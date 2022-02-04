@@ -1,5 +1,5 @@
 // main_test.v
-module hamnn
+module main
 
 import os
 // import tools

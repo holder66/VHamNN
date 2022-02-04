@@ -1,4 +1,4 @@
-// hamnn.v
+// vhamnn.v
 module main
 
 import os
@@ -12,14 +12,15 @@ import os
 // import validate
 // import cross
 // import explore
-import hamnn
+import holder66.hamnn
 import os.cmdline as oscmdline
 import time
 import math
 
-// the command line interface for using hamnn. In a terminal, type: `v run hamnn.v --help`
+// the command line interface for using hamnn. In a terminal, type: 
+// `v run vhamnn.v --help`
 // ```sh
-// Usage: v run hamnn [command] [flags] datafile
+// Usage: v run vhamnn [command] [flags] datafile
 // Commands: analyze | append | cross | explore | make | orange |
 //           query | rank | validate | verify
 // Flags and options:
@@ -64,9 +65,9 @@ fn main() {
 	// println('nr_cpus: ${runtime.nr_cpus()} nr_jobs: ${runtime.nr_jobs()}')
 	mut opts := get_options(os.args[1..])
 
-	if opts.help_flag {
-		println(show_help(opts))
-	} else {
+	// if opts.help_flag {
+	// 	println(show_help(opts))
+	// } else {
 		match opts.command {
 			'analyze' { analyze(opts) }
 			'append' { do_append(opts) ? }
@@ -80,7 +81,7 @@ fn main() {
 			'validate' { do_validate(opts) ? }
 			'verify' { do_verify(opts) ? }
 			else { println('unrecognized command') }
-		}
+		// }
 	}
 	mut duration := sw.elapsed()
 	// println('duration: $duration')
@@ -128,22 +129,22 @@ fn get_options(args []string) hamnn.Options {
 }
 
 // show_help
-fn show_help(opts hamnn.Options) string {
-	return match opts.command {
-		'rank' { rank_help }
-		'query' { query_help }
-		'analyze' { analyze_help }
-		'append' { append_help }
-		'make' { make_help }
-		'orange' { orange_help }
-		'verify' { verify_help }
-		'cross' { cross_help }
-		'explore' { explore_help }
-		'validate' { validate_help }
-		'display' { display_help }
-		else { hamnn_help }
-	}
-}
+// fn show_help(opts hamnn.Options) string {
+// 	return match opts.command {
+// 		'rank' { rank_help }
+// 		'query' { query_help }
+// 		'analyze' { analyze_help }
+// 		'append' { append_help }
+// 		'make' { make_help }
+// 		'orange' { orange_help }
+// 		'verify' { verify_help }
+// 		'cross' { cross_help }
+// 		'explore' { explore_help }
+// 		'validate' { validate_help }
+// 		'display' { display_help }
+// 		else { hamnn_help }
+// 	}
+// }
 
 // option returns the parameter following any of a list of options
 fn option(args []string, what []string) string {
