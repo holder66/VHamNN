@@ -1,5 +1,5 @@
-# hamnn
-A machine learning library, and stand-alone CLI app, for classification using a nearest neighbor algorithm based on Hamming distances.
+# vhamnn
+A CLI app, for classification using a nearest neighbor algorithm based on Hamming distances. Vhamnn makes use of the holder66.hamnn ML library.
 
 ## Description
 
@@ -56,7 +56,7 @@ fn main() {
 }
 ```
 
-## Installation of the stand-alone command line interface app:
+## Installation of the command line interface app:
 First, install V, if not already installed. On MacOS, Linux etc. you need `git` and a C compiler (For windows or android environments, see the [v lang documentation](https://github.com/vlang/v/blob/master/doc/docs.md#windows)) In a terminal:
 ```sh
 git clone https://github.com/vlang/v
@@ -69,7 +69,7 @@ Clone this github repository, and run the algorithms:
 git clone https://github.com/holder66/hamnn
 cd hamnn
 v .                     # compiles all the files in the folder
-./hamnn --help    # displays help information about the various commands
+./vhamnn --help    # displays help information about the various commands
 # and options available. More specific help information
 # is available for each command.
 ```
