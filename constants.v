@@ -159,17 +159,17 @@ Options:
 
 	orange_help = '
   NEWER ORANGE FORMAT:
-    Prefixed attributes contain a one- or two-lettered prefix, followed by '#'
+    Prefixed attributes contain a one- or two-lettered prefix, followed by `#`
     and the attribute name. The first letter of the prefix can be:
-      'm' for meta-attributes
-      'i' to ignore the attribute
-      'c' to define the class attribute
+      m for meta-attributes
+      i to ignore the attribute
+      c to define the class attribute
   
     the second letter of the prefix can be:
-      'D' for discrete
-      'C' for continuous
-      'S' for string
-      'B' for basket
+      D for discrete
+      C for continuous
+      S for string
+      B for basket
     if there are no prefixes for an attribute (ie just the attribute name)
     then the attribute will be treated as discrete, unless the actual values
     are numbers, in which case it will be treated as continuous.
@@ -177,18 +177,18 @@ Options:
     OLDER ORANGE FORMAT:
     the information about variable type, etc is contained in two lines:
       in the second line:
-      'd' or 'discrete' or a list of values: denotes a discrete attribute
-      'c' or 'continuous': denotes a continuous attribute
-      'string' denotes a string variable, which we ignore
-      'basket': these are continuous-valued meta attributes; ignore
+      d or discrete or a list of values: denotes a discrete attribute
+      c or continuous: denotes a continuous attribute
+      string denotes a string variable, which we ignore
+      basket: these are continuous-valued meta attributes; ignore
       it may also contain a string of values separated by spaces. Use these
       as the values for a discrete attribute.
     the third line contains optional flags:
-      'i' or 'ignore'
-      'c' or 'class': there can only be one class attribute. If none is found,
+      i or ignore
+      c or class: there can only be one class attribute. If none is found,
        use the last attribute as the class attribute.
-      'm' or 'meta': meta attribute, eg weighting information; ignore
-      '-dc' followed by a value: indicates how a don't care is represented.
+      m or meta: meta attribute, eg weighting information; ignore
+      -dc followed by a value: indicates how a don\'t care is represented.
     '
 
 	verify_help = '
