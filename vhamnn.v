@@ -134,7 +134,7 @@ fn show_help(opts hamnn.Options) string {
 		'explore' { explore_help }
 		'validate' { validate_help }
 		'display' { display_help }
-		else { hamnn_help }
+		else { vhamnn_help }
 	}
 }
 

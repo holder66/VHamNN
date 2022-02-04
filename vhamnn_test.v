@@ -6,6 +6,7 @@ import holder66.hamnn
 // import tools
 
 fn testsuite_begin() ? {
+	println(os.execute_or_panic('v up\nv update holder66.hamnn'))
 	if os.is_file('vhamnn') {os.rm('vhamnn') ?}	
 	os.execute_or_panic('v -gc boehm .')
 }
