@@ -9,10 +9,15 @@ fn testsuite_begin() ? {
 	println(os.execute_or_panic('v up\nv update holder66.hamnn'))
 	if os.is_file('vhamnn') {os.rm('vhamnn') ?}	
 	os.execute_or_panic('v -gc boehm .')
+	if os.is_dir('tempfolder') {
+		os.rmdir_all('tempfolder') ?
+	}
+	os.mkdir_all('tempfolder') ?
 }
 
 fn testsuite_end() ? {
 	if os.is_file('vhamnn') {os.rm('vhamnn') ?}	
+	os.rmdir_all('tempfolder') ?
 }
 
 // test_load_file_newer verify that load_file works with an orange-newer datafile
@@ -25,13 +30,21 @@ fn test_load_file_newer() {
 		'Job', 'Broderick', 'Tom', 'Dick', 'Harry']
 }
 
-// test_analyze_datafile
-fn test_analyze_datafile() {
-	// os.execute_or_panic('v vhamnn.v')
+// test_analyze
+fn test_analyze() {
 	println(os.execute_or_panic('./vhamnn'))
 	println(os.execute_or_panic('./vhamnn analyze datasets/developer.tab'))
 	println(os.execute_or_panic('./vhamnn analyze datasets/bcw174test'))
 	println(os.execute_or_panic('./vhamnn analyze datasets/iris.tab'))
+}
+
+// test_append 
+fn test_append() ? {
+	// make a classifier
+	cl := os.execute_or_panic('./vhamnn make  -a 2 -b 3,3 datasets/iris.tab')
+	println(cl)
+	println(os.execute_or_panic('./vhamnn append -h'))
+		// .v run vhamnn.v append -s -k iris.cl -o extended_iris.cl instancesfile'))
 }
 
 // test_rank_attributes
