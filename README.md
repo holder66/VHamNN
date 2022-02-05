@@ -1,5 +1,7 @@
 # vhamnn
-A CLI app, for classification using a nearest neighbor algorithm based on Hamming distances. Vhamnn makes use of the holder66.hamnn ML library.
+A Command Line Interface (CLI) app, for classification using a nearest neighbor algorithm based on Hamming distances. Vhamnn makes use of the holder66.hamnn ML library.
+
+You can use `vhamnn` with your own datasets, or with a selection of publicly available datasets that are widely used for demonstrating and testing ML classifiers, in the `datasets` directory. These datasets are in [Orange file format](https://orange3.readthedocs.io/projects/orange-data-mining-library/en/latest/reference/data.io.html) (see [Orange Data Mining](https://orangedatamining.com)), a useful way to specify information about feature types and relevance. 
 
 ## Description
 
@@ -22,11 +24,11 @@ A CLI app, for classification using a nearest neighbor algorithm based on Hammin
 #### data reduction
 identifies and uses only those variables which are most likely to contribute to classification accuracy
 #### image preprocessing
-eliminates the need to correct for variations in size, skew, or rotation
+eliminates the need to correct for variations in size, skew, or rotation (under development)
 #### noisy data
 quickly identifies and removes from consideration variables which add noise
 
-### Where it can be applied
+### Where it can be applied - potential use cases
 - speech recognition
 - emotion recognition (from facial expression, body language, speech prosody)
 - prediction of weather, earthquakes, traffic patterns
@@ -38,25 +40,7 @@ quickly identifies and removes from consideration variables which add noise
 - robotics
 - neural prosthetic devices, to enhance our senses, processing capacity and speed, memory
 
-## To use the hamnn library
-`v install holder66.hamnn`
-
-Example source code:
-```v
-module main
-
-import holder66.hamnn
-import os
-
-fn main() {
-    datafile_path := os.home_dir() + '/.vmodules/holder66/hamnn/datasets/iris.tab'
-    ds := hamnn.load_file(datafile_path)
-    result := hamnn.analyze_dataset(ds)
-    for line in result {println(line)}
-}
-```
-
-## Installation of the command line interface app:
+## Installation:
 First, install V, if not already installed. On MacOS, Linux etc. you need `git` and a C compiler (For windows or android environments, see the [v lang documentation](https://github.com/vlang/v/blob/master/doc/docs.md#windows)) In a terminal:
 ```sh
 git clone https://github.com/vlang/v
@@ -73,6 +57,10 @@ v .                     # compiles all the files in the folder
 # and options available. More specific help information
 # is available for each command.
 ```
+Install the `holder66.hamnn` library:
+`v install holder66.hamnn`
+
+That's it!
 ## Memory leak problem:
 
 At the present time, the best way to prevent a memory leak (which may eventually
