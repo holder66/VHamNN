@@ -50,8 +50,8 @@ sudo ./v symlink	# add v to your PATH
 ```
 Clone this github repository, and run the algorithms:
 ```sh
-git clone https://github.com/holder66/hamnn
-cd hamnn
+git clone https://github.com/holder66/vhamnn
+cd vhamnn
 v .                     # compiles all the files in the folder
 ./vhamnn --help    # displays help information about the various commands
 # and options available. More specific help information
