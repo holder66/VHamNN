@@ -167,7 +167,7 @@ fn flag(args []string, what []string) bool {
 
 // analyze
 fn analyze(opts hamnn.Options) {
-	print_array(hamnn.analyze_dataset(hamnn.load_file(opts.datafile_path)))
+	hamnn.analyze_dataset(hamnn.load_file(opts.datafile_path), opts)
 }
 
 // append appends instances in a file, to a classifier in a file specified

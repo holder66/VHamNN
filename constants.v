@@ -16,7 +16,7 @@ const (
       eg, v run vhamnn.v analyze datasets/iris.tab
     
     Commands:
-    analyze:   print information about the dataset to the console;
+    analyze:   generates information about a dataset, for printing to the console;
     cross:     performs a cross-validation on a dataset;
     explore:   carry out a series of verification experiments over a range of
                parameter settings, in order to find optimal values for classifier
@@ -73,9 +73,9 @@ const (
   '
 
 	analyze_help = '
-  "analyze" displays on the console information about a 
-  datafile\'s type, the attributes, and the class attribute. The following
-  tables are output: 
+  "analyze" returns an AnalyzeResult struct containing information about a 
+  datafile\'s type, the attributes, and the class attribute. Information 
+  to generate the following tables is returned: 
   1. a list of attributes, their types, the unique values, and a count of
   missing values;
   2. a table with counts for each type of attribute;
@@ -83,10 +83,11 @@ const (
   4. a list of continuous attributes useful for training a classifier;
   5. a breakdown of the class attribute, showing counts for each class. 
   
-  Usage: v run vhamnn.v analyze datasets/iris.tab
+  Usage: v run vhamnn.v analyze -s datasets/iris.tab
   
   Options:
-    -h, --help displays this message.
+    -h, --help displays this message;
+    -s, --show to print the tables on the console.
   '
 
 	append_help = '
