@@ -7,26 +7,26 @@ Here we use the HamNN classifier to generate a clinical risk calculator, using t
 First, display information about the dataset:
 
 ```sh
-./vhamnn analyze datasets/breast-cancer-wisconsin-disc.tab
+./vhamnn analyze -s datasets/breast-cancer-wisconsin-disc.tab
 ```
 ```sh
 Analysis of Dataset "datasets/breast-cancer-wisconsin-disc.tab" (File Type orange_older)
 All Attributes
-Index  Name                          Count  Uniques  Missing     %   Type
-_____  __________________________  _______  _______  _______  ____   ____
-    0  Sample ID                       699      645        0   0.0   i
-    1  Clump Thickness                 699       10        0   0.0   D
-    2  Uniformity of Cell Size         699       10        0   0.0   D
-    3  Uniformity of Cell Shape        699       10        0   0.0   D
-    4  Marginal Adhesion               699       10        0   0.0   D
-    5  Single Epithelial Cell Size     699       10        0   0.0   D
-    6  Bare Nuclei                     699       11       16   2.3   D
-    7  Bland Chromatin                 699       10        0   0.0   D
-    8  Normal Nucleoli                 699       10        0   0.0   D
-    9  Mitoses                         699        9        0   0.0   D
-   10  Class                           699        2        0   0.0   c
-______                             _______           _______ _____
-Totals (less Class attribute)         6990                16   0.23%
+Index  Name                          Count  Uniques  Missing      %  Type
+_____  __________________________  _______  _______  _______  _____  ____
+    0  Sample ID                       699      645        0    0.0     i
+    1  Clump Thickness                 699       10        0    0.0     D
+    2  Uniformity of Cell Size         699       10        0    0.0     D
+    3  Uniformity of Cell Shape        699       10        0    0.0     D
+    4  Marginal Adhesion               699       10        0    0.0     D
+    5  Single Epithelial Cell Size     699       10        0    0.0     D
+    6  Bare Nuclei                     699       11       16    2.3     D
+    7  Bland Chromatin                 699       10        0    0.0     D
+    8  Normal Nucleoli                 699       10        0    0.0     D
+    9  Mitoses                         699        9        0    0.0     D
+   10  Class                           699        2        0    0.0     c
+______                             _______           _______  _____
+Totals (less Class attribute)         7689                16   0.21%
 
 Counts of Attributes by Type
 Type        Count
@@ -37,28 +37,28 @@ c               1
 Total:         11
 
 Discrete Attributes for Training
- Index  Name                           Uniques
- _____  __________________________     _______
-     1  Clump Thickness                     10
-     2  Uniformity of Cell Size             10
-     3  Uniformity of Cell Shape            10
-     4  Marginal Adhesion                   10
-     5  Single Epithelial Cell Size         10
-     6  Bare Nuclei                         11
-     7  Bland Chromatin                     10
-     8  Normal Nucleoli                     10
-     9  Mitoses                              9
+ Index  Name                        Uniques
+ _____  __________________________  _______
+     1  Clump Thickness                  10
+     2  Uniformity of Cell Size          10
+     3  Uniformity of Cell Shape         10
+     4  Marginal Adhesion                10
+     5  Single Epithelial Cell Size      10
+     6  Bare Nuclei                      11
+     7  Bland Chromatin                  10
+     8  Normal Nucleoli                  10
+     9  Mitoses                           9
 
 Continuous Attributes for Training
- Index  Name                           Min         Max
- _____  __________________________  ______      ______
+ Index  Name                               Min         Max
+ _____  __________________________  __________  __________
 
 The Class Attribute: "Class"
 Class Value           Cases
 ____________________  _____
 benign                  458
 malignant               241
-processing time: 0 hrs 0 min  0.004 sec
+
 ```
 
 Rank order the attributes according to their contribution to separating the classes (flag -s: display the output on the console): 
@@ -67,10 +67,11 @@ Rank order the attributes according to their contribution to separating the clas
 ./vhamnn rank  -s datasets/breast-cancer-wisconsin-disc.tab 
 ```
 ```sh
-Attributes Sorted by Rank Value, including missing values
-For datafile: datasets/breast-cancer-wisconsin-disc.tab, binning range [2, 16]
+Attributes Sorted by Rank Value, for datasets/breast-cancer-wisconsin-disc.tab
+Missing values: included
+Bin range for continuous attributes: from 2 to 16
+Prevalence weighting of nearest neighbor counts: no 
  Index  Name                         Type   Rank Value   Bins
- _____  ___________________________  ____   __________   ____
      2  Uniformity of Cell Size      D           86.07      0
      3  Uniformity of Cell Shape     D           84.26      0
      6  Bare Nuclei                  D           81.35      0
@@ -80,7 +81,6 @@ For datafile: datasets/breast-cancer-wisconsin-disc.tab, binning range [2, 16]
      4  Marginal Adhesion            D           68.60      0
      1  Clump Thickness              D           63.99      0
      9  Mitoses                      D           41.56      0
-processing time: 0 hrs 0 min  0.005 sec
 ```
 
 We can run a set of exploratory cross-validations using leave-one-out

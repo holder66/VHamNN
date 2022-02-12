@@ -86,8 +86,8 @@ const (
   Usage: v run vhamnn.v analyze -s datasets/iris.tab
   
   Options:
-    -h, --help displays this message;
-    -s, --show to print the tables on the console.
+    -h, --help: displays this message;
+    -s, --show: prints the tables on the console.
   '
 
 	append_help = '

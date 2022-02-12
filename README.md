@@ -1,7 +1,7 @@
 # vhamnn
 A Command Line Interface (CLI) app, for classification using a nearest neighbor algorithm based on Hamming distances. Vhamnn makes use of the holder66.hamnn ML library.
 
-You can use `vhamnn` with your own datasets, or with a selection of publicly available datasets that are widely used for demonstrating and testing ML classifiers, in the `datasets` directory. These datasets are in [Orange file format](https://orange3.readthedocs.io/projects/orange-data-mining-library/en/latest/reference/data.io.html) (see [Orange Data Mining](https://orangedatamining.com)), a useful way to specify information about feature types and relevance. 
+You can use `vhamnn` with your own datasets, or with a selection of publicly available datasets that are widely used for demonstrating and testing ML classifiers, in the `datasets` directory. These files are in [Orange file format](https://orange3.readthedocs.io/projects/orange-data-mining-library/en/latest/reference/data.io.html) (see [Orange Data Mining](https://orangedatamining.com)), a useful way to specify information about feature types and relevance. 
 
 ## Description
 
@@ -61,6 +61,16 @@ Install the `holder66.hamnn` library:
 `v install holder66.hamnn`
 
 That's it!
+
+## Updating:
+```sh
+v up        # installs the latest release of V
+git pull    # When you're in the vhamnn directory, this command pulls in the 
+            # latest version of vhamnn
+v update    # get the latest version of the libraries, including holder66.hamnn
+v .         # recompile
+```
+`
 ## Memory leak problem:
 
 At the present time, the best way to prevent a memory leak (which may eventually
