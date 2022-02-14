@@ -174,7 +174,7 @@ fn analyze(opts hamnn.Options) {
 // by flag -k, and (optionally) stores the extended classifier in a file
 // specified by -o. It returns the extended classifier.
 fn do_append(opts hamnn.Options) ?hamnn.Classifier {
-	return hamnn.append(opts)
+	return hamnn.append_instances(hamnn.load_classifier_file(opts.classifierfile_path)?, hamnn.load_instances_file(opts.datafile_path)?, opts)
 }
 
 // query
@@ -189,7 +189,7 @@ fn do_query(opts hamnn.Options) ?hamnn.ClassifyResult {
 }
 
 // verify
-fn do_verify(opts hamnn.Options) ?hamnn.VerifyResult {
+fn do_verify(opts hamnn.Options) ?hamnn.CrossVerifyResult {
 	println(opts)
 	if opts.classifierfile_path == '' {
 		return hamnn.verify(make(opts) ?, opts)
