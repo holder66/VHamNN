@@ -3,7 +3,7 @@
 module main
 
 const (
-	vhamnn_help = '
+	vhamnn_help = "
 
     
     vhamnn is a command line interface app to make use of the functionality
@@ -12,7 +12,7 @@ const (
     For help with any of the commands below, enter the command followed by
       -h or --help, eg `v run hamnn.v make --help`.
     Usage:
-    Specify the file\'s path as the last command line argument, 
+    Specify the file's path as the last command line argument, 
       eg, v run vhamnn.v analyze datasets/iris.tab
     
     Commands:
@@ -26,12 +26,12 @@ const (
     orange:    print an explanation of Orange file formats to the console;
     query:     using a classifier, create an instance using an interactive
                dialogue and classify that instance;
-    rank:      rank order the dataset\'s attributes in terms of their
+    rank:      rank order the dataset's attributes in terms of their
                power in separating classes;
     validate:  as for verify, but using an unlabeled second dataset. Outputs 
                inferred classes for the second dataset; TODO
     verify:    use a classifier and a second labeled dataset to verify how well
-               the classifier performs in classifying the second dataset\'s 
+               the classifier performs in classifying the second dataset's 
                instances;
     
     Flags:
@@ -70,7 +70,7 @@ const (
     -x --exclude:    do not take into account missing values when ranking 
                      attributes;
         
-  '
+  "
 
 	analyze_help = '
   "analyze" returns an AnalyzeResult struct containing information about a 
@@ -159,7 +159,7 @@ Options:
 	-w --weight, weight the number of nearest neighbor counts by class prevalences.
 	'
 
-	orange_help = '
+	orange_help = "
   NEWER ORANGE FORMAT:
     Prefixed attributes contain a one- or two-lettered prefix, followed by `#`
     and the attribute name. The first letter of the prefix can be:
@@ -190,8 +190,8 @@ Options:
       c or class: there can only be one class attribute. If none is found,
        use the last attribute as the class attribute.
       m or meta: meta attribute, eg weighting information; ignore
-      -dc followed by a value: indicates how a don\'t care is represented.
-    '
+      -dc followed by a value: indicates how a don't care is represented.
+    "
 
 	verify_help = '
 "verify" takes a classifier created by make, and another datafile

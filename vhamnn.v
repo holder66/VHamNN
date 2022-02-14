@@ -9,7 +9,7 @@ import math
 import runtime
 
 // the command line interface app for using the holder66.hamnn ML library.
-// In a terminal, type: 
+// In a terminal, type:
 // `v run vhamnn.v --help`
 // ```sh
 // Usage: v run vhamnn [command] [flags] datafile
@@ -54,7 +54,7 @@ import runtime
 fn main() {
 	// get the command line string and use it to create an Options struct
 	sw := time.new_stopwatch()
-	println('nr_cpus: ${runtime.nr_cpus()} nr_jobs: ${runtime.nr_jobs()}')
+	println('nr_cpus: $runtime.nr_cpus() nr_jobs: $runtime.nr_jobs()')
 	mut opts := get_options(os.args[1..])
 
 	if opts.help_flag {
@@ -174,7 +174,8 @@ fn analyze(opts hamnn.Options) {
 // by flag -k, and (optionally) stores the extended classifier in a file
 // specified by -o. It returns the extended classifier.
 fn do_append(opts hamnn.Options) ?hamnn.Classifier {
-	return hamnn.append_instances(hamnn.load_classifier_file(opts.classifierfile_path)?, hamnn.load_instances_file(opts.datafile_path)?, opts)
+	return hamnn.append_instances(hamnn.load_classifier_file(opts.classifierfile_path) ?,
+		hamnn.load_instances_file(opts.datafile_path) ?, opts)
 }
 
 // query
