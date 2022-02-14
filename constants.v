@@ -3,60 +3,58 @@
 module main
 
 const (
-	vhamnn_help = "
+    vhamnn_help = "
 
     
     vhamnn is a command line interface app to make use of the functionality
     of the holder66.hamnn Machine Learning library.
     help, -h, --help to display this usage information.
     For help with any of the commands below, enter the command followed by
-      -h or --help, eg `v run hamnn.v make --help`.
+      -h or --help, eg v run . make --help, or just enter the command,
+      eg v run . explore
     Usage:
     Specify the file's path as the last command line argument, 
-      eg, v run vhamnn.v analyze datasets/iris.tab
+      eg, v run . analyze -s datasets/iris.tab
     
     Commands:
-    analyze:   generates information about a dataset, for printing to the console;
+    analyze:   generates information about a dataset, for printing to the 
+               console;
+    append:    takes a classifier and extends it by adding labeled instances;
     cross:     performs a cross-validation on a dataset;
-    explore:   carry out a series of verification experiments over a range of
-               parameter settings, in order to find optimal values for classifier
-               parameters.
-    help:      show this usage information;
+    explore:   carry out a series of cross-validation or verification 
+               experiments over a range of parameter settings, in order to find 
+               optimal values for classifier parameters;
     make:      create a classifier from a dataset;
     orange:    print an explanation of Orange file formats to the console;
     query:     using a classifier, create an instance using an interactive
-               dialogue and classify that instance;
+               dialogue and then classify that instance;
     rank:      rank order the dataset's attributes in terms of their
                power in separating classes;
     validate:  as for verify, but using an unlabeled second dataset. Outputs 
-               inferred classes for the second dataset; TODO
+               inferred classes for the second dataset;
     verify:    use a classifier and a second labeled dataset to verify how well
                the classifier performs in classifying the second dataset's 
                instances;
     
     Flags:
     -a --attributes: can be one, two, or 3 integers; a single integer will
-                     be used by make_classifier to produce a classifier with that 
-                     number of attributes. More than one integer will be used by
-                     explore to provide a range and an interval;
-    -b --bins:       can be one, two, or 3 integers; a single integer for one bin
-                     value to be used for all attributes; two integers for a range 
-                     of bin values; a third integer specifies an interval for the 
-                     range (note that the binning range is from the upper to the 
-                     lower value);
+                     be used by make_classifier to produce a classifier with 
+                     that number of attributes. More than one integer will be 
+                     used by explore to provide a range and an interval;
+    -b --bins:       can be one, two, or 3 integers; a single integer for one 
+                     bin value to be used for all attributes; two integers for 
+                     a range of bin values; a third integer specifies an 
+                     interval for the range (note that the binning range is 
+                     from the upper to the lower value);
     -c --concurrent: enable parallel processing to use multiple cores;
-    -d --display:    output to the console or graph previously saved results;
     -e --expanded:   show expanded results on the console;
     -f --folds:      default is leave-one-out;
-    -g --graph:      displays a plot;
+    -g --graph:      generates plots that show in your default web browser;
     -h --help:        
     -k --classifier: followed by the path to a file for a saved Classifier
     -o --output:     followed by the path to a file in which a classifier, a
                      result, instances used for validation, or a query instance 
-                     will be stored;
-    -p --part:       followed by an integer indicating partition number (note that
-                     partition number might be called fold number in other
-                     settings);
+                     is to be stored;
     -r --reps:       number of repetitions; if > 1, a random selection of
                      instances to be included in each fold will be applied;
     -s --show:       output results to the console;
@@ -64,18 +62,17 @@ const (
                      validated;
     -u --uniform:    specifies that the number of bins used will be the same
                      for all attributes;
-    -v --verbose:    display additional information for debugging
-    -w --weight:     when classifying, weight the nearest neighbour counts by class 
-                     prevalences;
+    -v --verbose:    display additional information for debugging;
+    -w --weight:     when classifying, weight the nearest neighbour counts by 
+                     class prevalences;
     -x --exclude:    do not take into account missing values when ranking 
                      attributes;
         
   "
 
-	analyze_help = '
-  "analyze" returns an AnalyzeResult struct containing information about a 
-  datafile\'s type, the attributes, and the class attribute. Information 
-  to generate the following tables is returned: 
+    analyze_help = '
+  "analyze" displays on the console, tables containing information about a 
+  datafile\'s type, the attributes, and the class attribute. The tables are:
   1. a list of attributes, their types, the unique values, and a count of
   missing values;
   2. a table with counts for each type of attribute;
@@ -83,65 +80,63 @@ const (
   4. a list of continuous attributes useful for training a classifier;
   5. a breakdown of the class attribute, showing counts for each class. 
   
-  Usage: v run vhamnn.v analyze -s datasets/iris.tab
+  Usage: v run . analyze datasets/iris.tab
   
   Options:
     -h, --help: displays this message;
     -s, --show: prints the tables on the console.
   '
 
-	append_help = '
-"append" extends a classifier by adding one or more labeled cases. It 
-returns the extended classifier as a classifier struct. Instances to be
-added should be in a file specified at the end of the command line, to
-a classifier in a file specified by flag -k. The instances file can be
-generated by the validate or query commands.
+    append_help = '
+"append" extends a classifier by adding one or more labeled cases.
+Instances to be added should be in a file specified at the end of the command 
+line, to a classifier in a file specified by flag -k. The instances file can be
+generated by the validate or query commands (using the -o option). information
+about the extended classifier is displayed on the console.
 Optionally, the extended classifier can be stored in a file specified by -o. 
-The append command returns the extended classifier.
 
-Usage: v run vhamnn.v append -s -k iris.cl -o extended_iris.cl instancesfile
+Usage: v run . append -k iris.cl -o extended_iris.cl instancesfile
+
+Required:
+-k --classifier: followed by the path to the classifier to be extended.
 
 Options:
-  -o --output, followed by the path to a file in which the extended 
+-o --output: followed by the path to a file in which the extended 
       classifier will be stored;
-  -s --show, output to the console information about the extended classifier;
-  -v --verbose, output debugging information to the console;
-  -x --exclude, exclude missing values from rank value calculations;
+-e --expanded: print out the extend classifier struct on the console.
   '
 
-	rank_help = '
+    rank_help = '
   "rank" rank orders a dataset\'s attributes in terms of ability 
 to distinguish between classes; it takes into account class prevalences.
 
-Usage: v run vhamnn.v rank -s datasets/anneal.tab
+Usage: v run . rank -x -g datasets/anneal.tab
 
 Options: 
   -b --bins, eg, "3,6" specifies the lower and upper limits for the number 
       of slices or bins for continuous attributes;
   -x --exclude, exclude missing values from rank value calculations;
-  -s --show, output to the console a list ordered by rank value;
   -g --graph, produce a plot showing rank values vs number of bins for   
       continuous attributes.
-	'
+    '
 
-	make_help = '
+    make_help = '
 "make" creates a classifier from the datafile given as the last argument.
 Returns a classifier struct.
 
-Usage: v run vhamnn.v make -s datasets/iris.tab
+Usage: v run . make -s datasets/iris.tab
 
 Options:
-  -a --attributes, the number of attributes (picked from the list of 
+  -a --attributes: the number of attributes (picked from the list of 
       ranked attributes) to be used in training the classifier
-  -b --bins, eg, "3,6" specifies the lower and upper limits for the number
+  -b --bins: eg, "3,6" specifies the lower and upper limits for the number
       of slices or bins for continuous attributes;
-  -o --output, followed by the path to a file in which the classifier will be stored;
-  -s --show, output to the console information about the classifier;
-  -v --verbose, output debugging information to the console;
+  -e --expanded: display the classifier struct on the console.
+  -o --output: followed by the path to a file in which the classifier will be stored;
   -x --exclude, exclude missing values from rank value calculations;
-	'
+    '
 
-	query_help = '
+    query_help = '
 "query" takes a classifier created by make(), and interactively asks the user
 to input (at the console) values for each attribute included in the classifier.
 After the last entry, it classifies the new instance and returns its inferred
@@ -154,12 +149,12 @@ applicable.
 Options:
   -k --classifier, followed by the path to a classifier file.
   -o --output, followed by the path for saving the instance file.
-	-v --verbose, show additional information for each query, and additional 
-	statistics for the classification.
-	-w --weight, weight the number of nearest neighbor counts by class prevalences.
-	'
+    -v --verbose, show additional information for each query, and additional 
+    statistics for the classification.
+    -w --weight, weight the number of nearest neighbor counts by class prevalences.
+    '
 
-	orange_help = "
+    orange_help = "
   NEWER ORANGE FORMAT:
     Prefixed attributes contain a one- or two-lettered prefix, followed by `#`
     and the attribute name. The first letter of the prefix can be:
@@ -193,7 +188,7 @@ Options:
       -dc followed by a value: indicates how a don't care is represented.
     "
 
-	verify_help = '
+    verify_help = '
 "verify" takes a classifier created by make, and another datafile
 to be used as a verification dataset. The parameters for which attributes to 
 use, the list of permissible attribute values for discrete attributes, and the 
@@ -203,56 +198,50 @@ dataset is classified, and the inferred classes are compared to the labeled
 classes to provide accuracy and other statistics.
 
 Options:
-	In addition to the options below, the options for "make" apply to 
-	both the classification and the verification datafile.
+    In addition to the options below, the options for "make" apply to 
+    both the classification and the verification datafile.
   -c --concurrent, permit parallel processing to use multiple cores;
   -e --expanded, expanded results on the console;
   -k --classifier, followed by the path to a file for a saved Classifier
-	-t --test, followed by the file path for the datafile to be used 
-	for verification;
-	-v --verbose, output debugging information to the console;
-	-s --show, output the results of the verification to the terminal;
-	-w --weight, weight the number of nearest neighbor counts
-	by class prevalences.
-	'
+    -t --test, followed by the file path for the datafile to be used 
+    for verification;
+    -v --verbose, output debugging information to the console;
+    -s --show, output the results of the verification to the terminal;
+    -w --weight, weight the number of nearest neighbor counts
+    by class prevalences when classifying.
+    '
 
-	validate_help = '
-"validate" takes a classifier created by make, and another datafile
-to be used as a validation dataset. Note that a validation dataset does 
-not contain class information. The parameters for which attributes to 
-use, the list of permissible attribute values for discrete attributes, and the 
-binning information for continuous attributes is copied from the 
-classification dataset. Each instance in the validation
-dataset is classified, and the inferred classes are returned.
+    validate_help = '
+"validate" classifies the instances in a validation dataset (specified by 
+-t, --test) using a classifier generated from the dataset specified by the 
+final command line argument (or optionally a classifier file specified by 
+-k --classifier). Note that a validation dataset does not contain class 
+information. The parameters regarding which attributes to use, the list of 
+permissible attribute values for discrete attributes, and the binning 
+information for continuous attributes is copied from the classification 
+dataset. Each instance in the validation ataset is classified, and the inferred 
+classes are displayed on the console.
 
 IMPORTANT: The validation dataset should still have an identified
 class attribute; however, the values should be empty.
 
+Usage: v run . validate -o ~/instancesfile -t datasets/bcw174validate datasets/bcw350train 
+
+Required:
+  -t --test: followed by the file path for the datafile to be used 
+  for validation;
+
 Options:
   In addition to the options below, the options for "make" apply to 
   both the classification and the validation datafile.
-  -c --concurrent, permit parallel processing to use multiple cores;
-  -e --expanded, expanded results on the console;
-  -k --classifier, followed by the path to a file for a saved Classifier
-  -t --test, followed by the file path for the datafile to be used 
-  for validation;
-  -v --verbose, output debugging information to the console;
-  -s --show, output the results of the validation to the terminal;
-  -w --weight, weight the number of nearest neighbor counts
-  by class prevalences.
+  -c --concurrent: permit parallel processing to use multiple cores (TODO);
+  -e --expanded: display the ValidateResult struct on the console;
+  -k --classifier: followed by the path to a file for a saved Classifier;
+  -w --weight: weight the number of nearest neighbor counts
+  by class prevalences when classifying.
   '
 
-	partition_help = '
-"partition" takes a dataset and partitions it into a dataset and 
-a list of instances for the fold, according to the parameter settings.
-
-Options:
-	-f --folds, number of cross-validation folds (default is leave-one-out)
-	-r --reps, number of repetitions; if > 1, a random selection of 
-		instances to be included in each fold will be applied
-	'
-
-	cross_help = '
+    cross_help = '
 "cross": When verifying the accuracy of a ML tool, it is common practice
 to train the tool on a subset of the instances in a datafile, and then 
 test that trained tool on the instances excluded from the subset. 
@@ -274,7 +263,7 @@ attributes need to be recalculated for the subset, and the map of unique
 values for discrete attributes may be different also for the subset 
 compared to the whole dataset. 
 
-Usage: v run vhamnn.v cross -s datasets/iris.tab
+Usage: v run . cross -s datasets/iris.tab
 
 Options:
   -a --attributes, the number of attributes (picked from the list of 
@@ -294,7 +283,7 @@ Options:
 
 '
 
-	explore_help = '
+    explore_help = '
 "explore" runs a series of cross-validations (or of verifies, if a
 second file is given) over a range of parameter 
 settings, used when seeking optimal values for parameters. A parameter 
@@ -304,7 +293,7 @@ the interval. For example, --bins 2,12,3 would indicate to do
 cross-validations for bins settings of 2, 5, 8, and 11. Note that a 
 single integer specifies the upper end of a range starting at 1.
 
-Usage: v run vhamnn.v explore -s datasets.iris.translation_tab 
+Usage: v run . explore -s datasets.iris.translation_tab 
 
 Options:
   -a --attributes, a range for the number of attributes (picked from the list
@@ -328,7 +317,7 @@ Options:
   -x --exclude, exclude missing values from rank value calculations;
 '
 
-	display_help = '
+    display_help = '
   "display" takes a previously saved results file, and outputs to the console
   and/or generates a plot.
   '

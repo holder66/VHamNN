@@ -6,7 +6,7 @@ import holder66.hamnn
 import os.cmdline as oscmdline
 import time
 import math
-import runtime
+// import runtime
 
 // the command line interface app for using the holder66.hamnn ML library.
 // In a terminal, type:
@@ -54,24 +54,25 @@ import runtime
 fn main() {
 	// get the command line string and use it to create an Options struct
 	sw := time.new_stopwatch()
-	println('nr_cpus: $runtime.nr_cpus() nr_jobs: $runtime.nr_jobs()')
+	// println('nr_cpus: $runtime.nr_cpus() nr_jobs: $runtime.nr_jobs()')
 	mut opts := get_options(os.args[1..])
 
 	if opts.help_flag {
 		println(show_help(opts))
 	} else {
-		match opts.command {
-			'analyze' { analyze(opts) }
-			'append' { do_append(opts) ? }
+		command := opts.command
+		match command {
+			'analyze' { analyze(mut opts) }
+			'append' { do_append( mut opts) ? }
 			'cross' { cross(opts) }
 			// 'display' { display(opts) }
 			'explore' { do_explore(opts) }
-			'make' { make(opts) ? }
+			'make' { make( mut opts) ? }
 			'orange' { orange() }
-			'query' { do_query(opts) ? }
-			'rank' { rank(opts) }
-			'validate' { do_validate(opts) ? }
-			'verify' { do_verify(opts) ? }
+			'query' { do_query(mut opts) ? }
+			'rank' { rank(mut opts) }
+			'validate' { do_validate(mut opts) ? }
+			'verify' { do_verify( mut opts) ? }
 			else { println('unrecognized command') }
 		}
 	}
@@ -165,50 +166,63 @@ fn flag(args []string, what []string) bool {
 	return result
 }
 
-// analyze
-fn analyze(opts hamnn.Options) {
+// analyze prints out to the console
+fn analyze(mut opts hamnn.Options) {
+	opts.show_flag = true
 	hamnn.analyze_dataset(hamnn.load_file(opts.datafile_path), opts)
 }
 
-// append appends instances in a file, to a classifier in a file specified
+// do_append appends instances in a file, to a classifier in a file specified
 // by flag -k, and (optionally) stores the extended classifier in a file
-// specified by -o. It returns the extended classifier.
-fn do_append(opts hamnn.Options) ?hamnn.Classifier {
-	return hamnn.append_instances(hamnn.load_classifier_file(opts.classifierfile_path) ?,
+// specified by -o. It displays the extended classifier on the console.
+fn do_append(mut opts hamnn.Options) ? {
+	opts.show_flag = true
+	ext_cl := hamnn.append_instances(hamnn.load_classifier_file(opts.classifierfile_path) ?,
 		hamnn.load_instances_file(opts.datafile_path) ?, opts)
+	if opts.expanded_flag {println(ext_cl)}
 }
 
 // query
-fn do_query(opts hamnn.Options) ?hamnn.ClassifyResult {
+fn do_query(mut opts hamnn.Options) ? {
+	mut cl := hamnn.Classifier{}
 	if opts.classifierfile_path == '' {
-		return hamnn.query(make(opts) ?, opts)
+		cl = hamnn.make_classifier(hamnn.load_file(opts.datafile_path), opts)
 	} else {
-		cl := hamnn.load_classifier_file(opts.classifierfile_path) ?
-		hamnn.show_classifier(cl)
-		return hamnn.query(make(opts) ?, opts)
+		cl = hamnn.load_classifier_file(opts.classifierfile_path) ?
+	}
+	qr := hamnn.query(cl, opts)
+	if opts.expanded_flag {
+		println(qr)
 	}
 }
 
 // verify
-fn do_verify(opts hamnn.Options) ?hamnn.CrossVerifyResult {
-	println(opts)
+fn do_verify(mut opts hamnn.Options) ? {
+	mut cl := hamnn.Classifier{}
 	if opts.classifierfile_path == '' {
-		return hamnn.verify(make(opts) ?, opts)
+		cl = hamnn.make_classifier(hamnn.load_file(opts.datafile_path), opts)
 	} else {
-		cl := hamnn.load_classifier_file(opts.classifierfile_path) ?
-		hamnn.show_classifier(cl)
-		return hamnn.verify(cl, opts)
+		cl = hamnn.load_classifier_file(opts.classifierfile_path) ?
+	}
+	opts.show_flag = true
+	vr := hamnn.verify(cl, opts)
+	if opts.expanded_flag {
+		println(vr)
 	}
 }
 
 // validate
-fn do_validate(opts hamnn.Options) ?hamnn.ValidateResult {
+fn do_validate(mut opts hamnn.Options) ? {
+mut cl := hamnn.Classifier{}
 	if opts.classifierfile_path == '' {
-		return hamnn.validate(make(opts) ?, opts)
+		cl = hamnn.make_classifier(hamnn.load_file(opts.datafile_path), opts)
 	} else {
-		cl := hamnn.load_classifier_file(opts.classifierfile_path) ?
-		hamnn.show_classifier(cl)
-		return hamnn.validate(cl, opts)
+		cl = hamnn.load_classifier_file(opts.classifierfile_path) ?
+	}
+	opts.show_flag = true
+	var := hamnn.validate(cl, opts) ?
+	if opts.expanded_flag {
+		println(var)
 	}
 }
 
@@ -226,15 +240,27 @@ fn do_explore(opts hamnn.Options) {
 fn orange() {
 }
 
-// rank returns an array of attributes sorted
-// according to their capacity to separate the classes
-fn rank(opts hamnn.Options) hamnn.RankingResult {
-	return hamnn.rank_attributes(hamnn.load_file(opts.datafile_path), opts)
+// rank generates an array of attributes sorted according to their 
+// capacity to separate the classes, and displays it on the console.
+// Optionally (-e flag) it prints out the RankingResult struct.
+// Optionally (-o flag) it saves the RankingResult struct to a file.
+fn rank(mut opts hamnn.Options) {
+	opts.show_flag = true
+	ra := hamnn.rank_attributes(hamnn.load_file(opts.datafile_path), opts)
+	if opts.expanded_flag {
+		println(ra)
+	}
 }
 
-// make returns a Classifier struct
-fn make(opts hamnn.Options) ?hamnn.Classifier {
-	return hamnn.make_classifier(hamnn.load_file(opts.datafile_path), opts)
+// make generates a Classifier, and displays it on the console.
+// Optionally (-e flag) it prints out the classifier struct.
+// Optionally (-o flag) it saves the classifier file.
+fn make(mut opts hamnn.Options) ? {
+	opts.show_flag = true
+	cl := hamnn.make_classifier(hamnn.load_file(opts.datafile_path), opts)
+	if opts.expanded_flag {
+		println(cl)
+	}	 
 }
 
 // display outputs to the console or graphs a previously saved result
