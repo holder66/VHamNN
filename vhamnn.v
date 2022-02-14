@@ -63,16 +63,16 @@ fn main() {
 		command := opts.command
 		match command {
 			'analyze' { analyze(mut opts) }
-			'append' { do_append( mut opts) ? }
-			'cross' { cross(opts) }
+			'append' { do_append(mut opts) ? }
+			'cross' { cross(mut opts) }
 			// 'display' { display(opts) }
-			'explore' { do_explore(opts) }
-			'make' { make( mut opts) ? }
+			'explore' { do_explore(mut opts) }
+			'make' { make(mut opts) ? }
 			'orange' { orange() }
 			'query' { do_query(mut opts) ? }
 			'rank' { rank(mut opts) }
 			'validate' { do_validate(mut opts) ? }
-			'verify' { do_verify( mut opts) ? }
+			'verify' { do_verify(mut opts) ? }
 			else { println('unrecognized command') }
 		}
 	}
@@ -179,7 +179,9 @@ fn do_append(mut opts hamnn.Options) ? {
 	opts.show_flag = true
 	ext_cl := hamnn.append_instances(hamnn.load_classifier_file(opts.classifierfile_path) ?,
 		hamnn.load_instances_file(opts.datafile_path) ?, opts)
-	if opts.expanded_flag {println(ext_cl)}
+	if opts.expanded_flag {
+		println(ext_cl)
+	}
 }
 
 // query
@@ -213,7 +215,7 @@ fn do_verify(mut opts hamnn.Options) ? {
 
 // validate
 fn do_validate(mut opts hamnn.Options) ? {
-mut cl := hamnn.Classifier{}
+	mut cl := hamnn.Classifier{}
 	if opts.classifierfile_path == '' {
 		cl = hamnn.make_classifier(hamnn.load_file(opts.datafile_path), opts)
 	} else {
@@ -227,12 +229,14 @@ mut cl := hamnn.Classifier{}
 }
 
 // cross
-fn cross(opts hamnn.Options) {
+fn cross(mut opts hamnn.Options) {
+	opts.show_flag = true
 	hamnn.cross_validate(hamnn.load_file(opts.datafile_path), opts)
 }
 
 // explore
-fn do_explore(opts hamnn.Options) {
+fn do_explore(mut opts hamnn.Options) {
+	opts.show_flag = true
 	hamnn.explore(hamnn.load_file(opts.datafile_path), opts)
 }
 
@@ -240,7 +244,7 @@ fn do_explore(opts hamnn.Options) {
 fn orange() {
 }
 
-// rank generates an array of attributes sorted according to their 
+// rank generates an array of attributes sorted according to their
 // capacity to separate the classes, and displays it on the console.
 // Optionally (-e flag) it prints out the RankingResult struct.
 // Optionally (-o flag) it saves the RankingResult struct to a file.
@@ -260,7 +264,7 @@ fn make(mut opts hamnn.Options) ? {
 	cl := hamnn.make_classifier(hamnn.load_file(opts.datafile_path), opts)
 	if opts.expanded_flag {
 		println(cl)
-	}	 
+	}
 }
 
 // display outputs to the console or graphs a previously saved result
