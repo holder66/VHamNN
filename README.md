@@ -82,17 +82,17 @@ At the present time, the best way to prevent a memory leak (which may eventually
 You may need to install the libgc or libgc-dev library, using "brew" or "apt".
 
 ## Examples showing use of the Command Line Interface
-Please see [examples_of_command_line_usage.md](https://github.com/holder66/hamnn/blob/main/examples_of_command_line_usage.md)
+Please see [examples_of_command_line_usage.md](https://github.com/holder66/vhamnn/blob/main/examples_of_command_line_usage.md)
 
 ## Example: typical use case, a clinical risk calculator
 
 Health care professionals frequently make use of calculators to inform clinical decision-making. Data regarding symptoms, findings on physical examination, laboratory and imaging results, and outcome information such as diagnosis, risk for developing a condition, or response to specific treatments, is collected for a sample of patients, and then used to form the basis of a formula that can be used to predict the outcome information of interest for a new patient, based on how their symptoms and findings, etc. compare to those in the dataset.
 
-Please see [clinical_calculator_example.md](https://github.com/holder66/hamnn/blob/main/clinical_calculator_example.md).
+Please see [clinical_calculator_example.md](https://github.com/holder66/vhamnn/blob/main/clinical_calculator_example.md).
 
 ## Example: finding useful information embedded in noise
 
-Please see a worked example here: [noisy_data.md](https://github.com/holder66/hamnn/blob/main/noisy_data.md)
+Please see a worked example here: [noisy_data.md](https://github.com/holder66/vhamnn/blob/main/noisy_data.md)
 
 
 ## Glossary of terms

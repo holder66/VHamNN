@@ -7,7 +7,7 @@ Here we use the HamNN classifier to generate a clinical risk calculator, using t
 First, display information about the dataset:
 
 ```sh
-./vhamnn analyze -s datasets/breast-cancer-wisconsin-disc.tab
+v run . analyze -s datasets/breast-cancer-wisconsin-disc.tab
 ```
 ```sh
 Analysis of Dataset "datasets/breast-cancer-wisconsin-disc.tab" (File Type orange_older)
@@ -64,7 +64,7 @@ malignant               241
 Rank order the attributes according to their contribution to separating the classes (flag -s: display the output on the console): 
 
 ```sh
-./vhamnn rank  -s datasets/breast-cancer-wisconsin-disc.tab 
+v run . rank  -s datasets/breast-cancer-wisconsin-disc.tab 
 ```
 ```sh
 Attributes Sorted by Rank Value, for datasets/breast-cancer-wisconsin-disc.tab
@@ -87,7 +87,7 @@ We can run a set of exploratory cross-validations using leave-one-out
 folding, and with the -w flag to weight the results using class prevalences.
 
 ```sh
-./vhamnn explore -w -x -c -e -g datasets/breast-cancer-wisconsin-disc.tab
+v run . explore -w -x -c -e -g datasets/breast-cancer-wisconsin-disc.tab
 ```
 Note the additional flags: -x to exclude missing values; -c to exploit 
 parallel processing by using all the available CPU cores on your machine;
@@ -114,7 +114,7 @@ there are continuous attributes, is often a matter of experience and judgment.
 Let us train our classifier using 4 attributes:
 
 ```sh
-./vhamnn make -a 4 -w -s datasets/breast-cancer-wisconsin-disc.tab 
+v run . make -a 4 -w -s datasets/breast-cancer-wisconsin-disc.tab 
 ```
 ```sh
 Classifier for "datasets/breast-cancer-wisconsin-disc.tab"
@@ -132,7 +132,7 @@ Single Epithelial Cell Size D          10
 We can use this trained classifier as a clinical calculator, to classify a new sample of breast tissue (with values of 8, 9, 7, and 8 for the four attributes identified above) as either malignant or benign:
 
 ```sh
-./vhamnn query -a 4 -w datasets/breast-cancer-wisconsin-disc.tab
+v run . query -a 4 -w datasets/breast-cancer-wisconsin-disc.tab
 ```
 ```sh
 Possible values for "Uniformity of Cell Size": ['1', '4', '8', '10', '2', '3', '7', '5', '6', '9']
@@ -158,7 +158,7 @@ neighbour counts would be 4 for malignant and 0 for benign).
 In the real world, important information may not be available. Suppose we have a breast tissue sample where we only have information on the uniformity of cell shape which has a value of 2, and single epithelial cell size with a value of 3:
 
 ```sh
-./vhamnn query -a 4 -w datasets/breast-cancer-wisconsin-disc.tab
+v run . query -a 4 -w datasets/breast-cancer-wisconsin-disc.tab
 ```
 ```sh
 Possible values for "Uniformity of Cell Size": ['1', '4', '8', '10', '2', '3', '7', '5', '6', '9']
