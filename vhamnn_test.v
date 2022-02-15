@@ -53,7 +53,7 @@ fn test_analyze() {
 fn test_make() {
 	println(os.execute_or_panic('./vhamnn make'))
 	println(os.execute_or_panic('./vhamnn make -a 7 -b 3,7 datasets/developer.tab'))
-	println(os.execute_or_panic('./vhamnn make -a 7 -b 3,7 -x -e -o tempfolder.dev.cl datasets/developer.tab'))
+	println(os.execute_or_panic('./vhamnn make -a 7 -b 3,7 -x -e -o tempfolder/dev.cl datasets/developer.tab'))
 }
 
 // test_cross
