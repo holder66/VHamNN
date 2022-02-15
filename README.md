@@ -92,7 +92,7 @@ Please see [clinical_calculator_example.md](https://github.com/holder66/vhamnn/b
 
 ## Example: finding useful information embedded in noise
 
-Please see a worked example here: [noisy_data.md](https://github.com/holder66/vhamnn/master/main/noisy_data.md)
+Please see a worked example here: [noisy_data.md](https://github.com/holder66/vhamnn/blob/master/noisy_data.md)
 
 
 ## Glossary of terms
