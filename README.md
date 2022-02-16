@@ -12,6 +12,10 @@ You can use `vhamnn` with your own datasets, or with a selection of publicly ava
 ### What it can do
 - classify static patterns (eg images, microarray data, medical symptoms and test results, demographic data, survey results, etc.)
 - classify serial (time-based) patterns (eg speech, movies, real-time sensor data, radar information, etc.) (under development)
+- works with multiple classes
+- handles missing data gracefully
+- easily and accurately deals with situations where classes are not [linearly separable](https://en.wikipedia.org/wiki/Linear_separability). This applies to 
+many cases in physiology, biology,  and medicine (see [hormesis.](https://en.wikipedia.org/wiki/Hormesis))
 
 ### What makes it special
 - one-trial learning - learns in a single pass
