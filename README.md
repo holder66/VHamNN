@@ -77,9 +77,7 @@ v .         # recompile
 `
 ## Memory leak problem:
 
-At the present time, the best way to prevent a memory leak (which may eventually
- cause the program to be "killed" by the OS when the available memory is exceeded) is to compile with the gc flag, eg:
-
+At the present time, if your code using the hamnn library (especially memory-intensive operations such as cross-validate or explore) dies without going to completion, it may be due to memory leaks caused by the V lang compiler. The best way to prevent these memory leaks is to compile with the gc flag, eg:
  ```sh
  v -gc boehm .
  ```
