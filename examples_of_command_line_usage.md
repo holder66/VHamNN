@@ -37,10 +37,16 @@ To calculate rank values using the same number of bins for all attributes:
 
 To exclude missing values from the rank value calculations:
 
-`v run . rank -- exclude --show --graph datasets/anneal.tab` or 
-
+`v run . rank --exclude --show --graph datasets/anneal.tab` or 
 
 `v run . rank -s -g -e datasets/anneal.tab`
+
+## Working with large datasets
+Doing a leave-one-out cross-validation on a large dataset can be time-consuming. Save time by doing fewer folds, eg 10-fold (`-f 10`). Repeat the exercise 5 times (`-r 5`); results are averaged over the 5 repetitions, since random selection of instances for folding means that results will be different for one repetition to another:
+
+`v run . analyze datasets/mnist_test.tab`
+
+`v -gc boehm run . cross -s -e -f 10 -r 5 -a 310 -b 2,2 -c datasets/mnist_test.tab`
 
 ## To explore how varying parameters affect classification accuracy
 `v run . explore --expand --graph --concurrent --weight datasets/breast-cancer-wisconsin-disc.tab` or

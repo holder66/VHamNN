@@ -64,9 +64,9 @@ fn main() {
 		match command {
 			'analyze' { analyze(mut opts) }
 			'append' { do_append(mut opts) ? }
-			'cross' { cross(mut opts) }
+			'cross' { cross(mut opts) ? }
 			// 'display' { display(opts) }
-			'explore' { do_explore(mut opts) }
+			'explore' { do_explore(mut opts) ? }
 			'make' { make(mut opts) ? }
 			'orange' { orange() }
 			'query' { do_query(mut opts) ? }
@@ -229,15 +229,16 @@ fn do_validate(mut opts hamnn.Options) ? {
 }
 
 // cross
-fn cross(mut opts hamnn.Options) {
+fn cross(mut opts hamnn.Options) ? {
 	opts.show_flag = true
-	hamnn.cross_validate(hamnn.load_file(opts.datafile_path), opts)
+	opts.random_pick = if opts.repetitions > 1 {true} else {false}
+	hamnn.cross_validate(hamnn.load_file(opts.datafile_path), opts) ?
 }
 
-// explore
-fn do_explore(mut opts hamnn.Options) {
+// do_explore
+fn do_explore(mut opts hamnn.Options) ? {
 	opts.show_flag = true
-	hamnn.explore(hamnn.load_file(opts.datafile_path), opts)
+	hamnn.explore(hamnn.load_file(opts.datafile_path), opts) ?
 }
 
 // orange

@@ -1,12 +1,9 @@
-// main_test.v
+// vhamnn_test.v
 module main
 
 import os
-// import holder66.hamnn
-// import tools
 
 fn testsuite_begin() ? {
-	println(os.execute_or_panic('v up\nv update holder66.hamnn'))
 	if os.is_file('vhamnn') {
 		os.rm('vhamnn') ?
 	}
@@ -28,7 +25,7 @@ fn testsuite_end() ? {
 fn test_explore() {
 	println(os.execute_or_panic('./vhamnn explore --help'))
 	println(os.execute_or_panic('./vhamnn explore -g datasets/iris.tab'))
-	// println(os.execute_or_panic('./vhamnn explore -g -f 0 -c -a 3,4 -b 6,8  datasets/prostata.tab'))
+	println(os.execute_or_panic('./vhamnn explore -g -a 2 -b 6  -c datasets/leukemia34test.tab'))
 	println(os.execute_or_panic('./vhamnn explore -g -e -c -o tempfolder/breast.exr datasets/breast-cancer-wisconsin-disc.tab'))
 }
 
