@@ -27,6 +27,7 @@ fn test_explore() {
 	println(os.execute_or_panic('./vhamnn explore -g datasets/iris.tab'))
 	println(os.execute_or_panic('./vhamnn explore -g -a 2 -b 6  -c datasets/leukemia34test.tab'))
 	println(os.execute_or_panic('./vhamnn explore -g -e -c -o tempfolder/breast.exr datasets/breast-cancer-wisconsin-disc.tab'))
+	println(os.execute_or_panic('v run . cross -c -w -e -a 13 datasets/UCI/zoo.arff'))
 }
 
 // test_verify
@@ -60,6 +61,7 @@ fn test_cross() {
 	println(os.execute_or_panic('./vhamnn cross -c -e -a 2 -b 3,6 datasets/iris.tab'))
 	println(os.execute_or_panic('./vhamnn cross -c -e -a 2 -b 3,6 -f 10 -w datasets/iris.tab'))
 	println(os.execute_or_panic('./vhamnn cross -c -e -a 6 -b 3,6 -f 20 -w datasets/prostata.tab'))
+	println(os.execute_or_panic('v run . cross -c -w -e -a 13 datasets/UCI/zoo.arff'))
 }
 
 // test_append

@@ -13,7 +13,7 @@ import math
 // `v run vhamnn.v --help`
 // ```sh
 // Usage: v run vhamnn [command] [flags] datafile
-// Commands: analyze | append | cross | explore | make | orange |
+// Commands: analyze | append | cross | examples | explore | make | orange |
 //           query | rank | validate | verify
 // Flags and options:
 // -a --attributes, can be one, two, or 3 integers; a single integer will
@@ -66,6 +66,7 @@ fn main() {
 			'append' { do_append(mut opts) ? }
 			'cross' { cross(mut opts) ? }
 			// 'display' { display(opts) }
+			'examples' { examples() ? }
 			'explore' { do_explore(mut opts) ? }
 			'make' { make(mut opts) ? }
 			'orange' { orange() }
@@ -135,6 +136,7 @@ fn show_help(opts hamnn.Options) string {
 		'explore' { explore_help }
 		'validate' { validate_help }
 		'display' { display_help }
+		'examples' { examples_help }
 		else { vhamnn_help }
 	}
 }
@@ -208,7 +210,7 @@ fn do_verify(mut opts hamnn.Options) ? {
 	}
 	opts.show_flag = true
 	vr := hamnn.verify(cl, opts)
-	if opts.expanded_flag {
+	if opts.verbose_flag {
 		println(vr)
 	}
 }
@@ -231,7 +233,7 @@ fn do_validate(mut opts hamnn.Options) ? {
 // cross
 fn cross(mut opts hamnn.Options) ? {
 	opts.show_flag = true
-	opts.random_pick = if opts.repetitions > 1 {true} else {false}
+	opts.random_pick = if opts.repetitions > 1 { true } else { false }
 	hamnn.cross_validate(hamnn.load_file(opts.datafile_path), opts) ?
 }
 

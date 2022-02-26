@@ -21,6 +21,9 @@ const (
                console;
     append:    takes a classifier and extends it by adding labeled instances;
     cross:     performs a cross-validation on a dataset;
+    examples:  runs a file that displays brief information and a usage example 
+               for running each command, prompts the user to continue, and then
+               executes the example, displaying results on the console;
     explore:   carry out a series of cross-validation or verification 
                experiments over a range of parameter settings, in order to find 
                optimal values for classifier parameters;
@@ -69,6 +72,15 @@ const (
                      attributes;
         
   "
+
+	examples_help = '
+"examples" displays information about running the various commands, shows
+a typical command interface line illustrating the example, prompts the user
+to continue by hitting the "return" key, and then executes the example 
+and displays the result on the console. 
+To start the demonstration, enter "v run . examples go"
+To stop before completing the demo, hit ctrl-C
+'
 
 	analyze_help = '
 "analyze" displays on the console, tables containing information about a 
