@@ -56,13 +56,17 @@ Clone this github repository:
 ```sh
 git clone https://github.com/holder66/vhamnn
 cd vhamnn
-v .                     # compiles all the files in the folder
+v .                # compiles all the files in the folder
 ./vhamnn --help    # displays help information about the various commands
 # and options available. More specific help information
 # is available for each command.
 ```
 Install the `holder66.hamnn` library:
 `v install holder66.hamnn`
+
+And a couple of other libraries:
+`v install vsl`
+`v install etienne_napoleone.chalk`
 
 That's it!
 
@@ -77,7 +81,14 @@ git pull    # When you're in the vhamnn directory, this command pulls in the
 v update    # get the latest version of the libraries, including holder66.hamnn
 v .         # recompile
 ```
-`
+
+## Getting help:
+The V lang community meets on [Discord](https://discord.gg/vlang)
+
+For issues with vhamnn or hamnn, please raise an issue on github:
+[vhamnn](https://github.com/holder66/vhamnn)
+[hamnn](https://github.com/holder66/hamnn)
+
 ## Memory leak problem:
 
 At the present time, if your code using the hamnn library (especially memory-intensive operations such as cross-validate or explore) dies without going to completion, it may be due to memory leaks caused by the V lang compiler. The best way to prevent these memory leaks is to compile with the gc flag, eg:
