@@ -23,67 +23,67 @@ fn testsuite_end() ? {
 
 // test_explore
 fn test_explore() {
-	println(os.execute_or_panic('./vhamnn explore --help'))
-	println(os.execute_or_panic('./vhamnn explore -g datasets/iris.tab'))
-	println(os.execute_or_panic('./vhamnn explore -g -a 2 -b 6  -c datasets/leukemia34test.tab'))
-	println(os.execute_or_panic('./vhamnn explore -g -e -c -o tempfolder/breast.exr datasets/breast-cancer-wisconsin-disc.tab'))
+	println(os.execute_or_panic('v run . explore --help'))
+	println(os.execute_or_panic('v run . explore -g datasets/iris.tab'))
+	println(os.execute_or_panic('v run . explore -g -a 2 -b 6  -c datasets/leukemia34test.tab'))
+	println(os.execute_or_panic('v run . explore -g -e -c -o tempfolder/breast.exr datasets/breast-cancer-wisconsin-disc.tab'))
 	println(os.execute_or_panic('v run . cross -c -w -e -a 13 datasets/UCI/zoo.arff'))
 }
 
 // test_verify
 fn test_verify() {
-	println(os.execute_or_panic('./vhamnn verify -h'))
-	println(os.execute_or_panic('./vhamnn verify -c -t datasets/bcw174test datasets/bcw350train'))
+	println(os.execute_or_panic('v run . verify -h'))
+	println(os.execute_or_panic('v run . verify -c -t datasets/bcw174test datasets/bcw350train'))
 	// save a classifier to a file
-	println(os.execute_or_panic('./vhamnn make -a 33 -b 2,16 -w -o tempfolder/soybean.cl datasets/soybean-large-train.tab'))
-	println(os.execute_or_panic('./vhamnn verify -c -w -s -k tempfolder/soybean.cl -t datasets/soybean-large-test.tab'))
+	println(os.execute_or_panic('v run . make -a 33 -b 2,16 -w -o tempfolder/soybean.cl datasets/soybean-large-train.tab'))
+	println(os.execute_or_panic('v run . verify -c -w -s -k tempfolder/soybean.cl -t datasets/soybean-large-test.tab'))
 }
 
 // test_analyze
 fn test_analyze() {
-	println(os.execute_or_panic('./vhamnn'))
-	println(os.execute_or_panic('./vhamnn analyze datasets/developer.tab'))
-	// println(os.execute_or_panic('./vhamnn analyze datasets/bcw174test'))
-	// println(os.execute_or_panic('./vhamnn analyze datasets/iris.tab'))
+	println(os.execute_or_panic('v run .'))
+	println(os.execute_or_panic('v run . analyze datasets/developer.tab'))
+	// println(os.execute_or_panic('v run . analyze datasets/bcw174test'))
+	// println(os.execute_or_panic('v run . analyze datasets/iris.tab'))
 }
 
 // test_make
 fn test_make() {
-	println(os.execute_or_panic('./vhamnn make'))
-	println(os.execute_or_panic('./vhamnn make -a 7 -b 3,7 datasets/developer.tab'))
-	println(os.execute_or_panic('./vhamnn make -a 7 -b 3,7 -x -e -o tempfolder/dev.cl datasets/developer.tab'))
+	println(os.execute_or_panic('v run . make'))
+	println(os.execute_or_panic('v run . make -a 7 -b 3,7 datasets/developer.tab'))
+	println(os.execute_or_panic('v run . make -a 7 -b 3,7 -x -e -o tempfolder/dev.cl datasets/developer.tab'))
 }
 
 // test_cross
 fn test_cross() {
-	println(os.execute_or_panic('./vhamnn cross --help'))
-	println(os.execute_or_panic('./vhamnn cross -c datasets/iris.tab'))
-	println(os.execute_or_panic('./vhamnn cross -c -e -a 2 -b 3,6 datasets/iris.tab'))
-	println(os.execute_or_panic('./vhamnn cross -c -e -a 2 -b 3,6 -f 10 -w datasets/iris.tab'))
-	println(os.execute_or_panic('./vhamnn cross -c -e -a 6 -b 3,6 -f 20 -w datasets/prostata.tab'))
+	println(os.execute_or_panic('v run . cross --help'))
+	println(os.execute_or_panic('v run . cross -c datasets/iris.tab'))
+	println(os.execute_or_panic('v run . cross -c -e -a 2 -b 3,6 datasets/iris.tab'))
+	println(os.execute_or_panic('v run . cross -c -e -a 2 -b 3,6 -f 10 -w datasets/iris.tab'))
+	println(os.execute_or_panic('v run . cross -c -e -a 6 -b 3,6 -f 20 -w datasets/prostata.tab'))
 	println(os.execute_or_panic('v run . cross -c -w -e -a 13 datasets/UCI/zoo.arff'))
 }
 
 // test_append
 fn test_append() ? {
 	// make a classifier
-	println(os.execute_or_panic('./vhamnn make -a 4 -o tempfolder/bcw.cl datasets/bcw350train'))
+	println(os.execute_or_panic('v run . make -a 4 -o tempfolder/bcw.cl datasets/bcw350train'))
 	// make an instances file by doing a validation
-	println(os.execute_or_panic('./vhamnn validate -k tempfolder/bcw.cl -o tempfolder/bcw.inst -t datasets/bcw174test'))
+	println(os.execute_or_panic('v run . validate -k tempfolder/bcw.cl -o tempfolder/bcw.inst -t datasets/bcw174test'))
 	// use the instances file to append to the saved classifier
-	println(os.execute_or_panic('./vhamnn append -k tempfolder/bcw.cl -o tempfolder/bcw-ext.cl tempfolder/bcw.inst'))
+	println(os.execute_or_panic('v run . append -k tempfolder/bcw.cl -o tempfolder/bcw-ext.cl tempfolder/bcw.inst'))
 }
 
 // test_rank_attributes
 fn test_rank_attributes() {
 	// os.execute_or_panic('v hamnn.v')
-	// println(os.execute_or_panic('./vhamnn rank -h'))
-	println(os.execute_or_panic('./vhamnn rank'))
-	println(os.execute_or_panic('./vhamnn rank datasets/developer.tab'))
-	println(os.execute_or_panic('./vhamnn rank -x -b 3,3 datasets/iris.tab'))
-	println(os.execute_or_panic('./vhamnn rank -b 2,6 -x -a 2 datasets/iris.tab'))
-	println(os.execute_or_panic('./vhamnn rank --bins 4,12  -x datasets/iris.tab'))
-	println(os.execute_or_panic('./vhamnn rank -x -g datasets/anneal.tab'))
+	// println(os.execute_or_panic('v run . rank -h'))
+	println(os.execute_or_panic('v run . rank'))
+	println(os.execute_or_panic('v run . rank datasets/developer.tab'))
+	println(os.execute_or_panic('v run . rank -x -b 3,3 datasets/iris.tab'))
+	println(os.execute_or_panic('v run . rank -b 2,6 -x -a 2 datasets/iris.tab'))
+	println(os.execute_or_panic('v run . rank --bins 4,12  -x datasets/iris.tab'))
+	println(os.execute_or_panic('v run . rank -x -g datasets/anneal.tab'))
 }
 
 // test_flag

@@ -62,6 +62,7 @@ v .                # compiles all the files in the folder
 # is available for each command.
 ```
 Install the `holder66.hamnn` library:
+`cd ~       # go back to your home directory`
 `v install holder66.hamnn`
 
 And a couple of other libraries:

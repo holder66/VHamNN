@@ -209,7 +209,7 @@ fn do_verify(mut opts hamnn.Options) ? {
 		cl = hamnn.load_classifier_file(opts.classifierfile_path) ?
 	}
 	opts.show_flag = true
-	vr := hamnn.verify(cl, opts)
+	vr := hamnn.verify(cl, opts) ?
 	if opts.verbose_flag {
 		println(vr)
 	}
