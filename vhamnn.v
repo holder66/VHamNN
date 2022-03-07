@@ -34,7 +34,6 @@ import math
 //    range of uniform bin values for the explore command; a third integer
 //    for the interval to be used over the explore range.
 // -c --concurrent, permit parallel processing to use multiple cores;
-// -d --display, output to the console or graph previously saved results;
 // -e --expanded, expanded results on the console;
 // -f --folds, default is leave-one-out;
 // -g --graph, displays a plot;
