@@ -13,7 +13,8 @@ import math
 // `v run vhamnn.v --help`
 // ```sh
 // Usage: v run vhamnn [command] [flags] datafile
-// Commands: analyze | append | cross | examples | explore | make | orange |
+// Commands: analyze | append | cross | display | examples | explore 
+// | make | orange |
 //           query | rank | validate | verify
 // Flags and options:
 // -a --attributes, can be one, two, or 3 integers; a single integer will
@@ -65,7 +66,7 @@ fn main() {
 			'analyze' { analyze(mut opts) }
 			'append' { do_append(mut opts) ? }
 			'cross' { cross(mut opts) ? }
-			// 'display' { display(opts) }
+			'display' { do_display(opts) ? }
 			'examples' { examples() ? }
 			'explore' { do_explore(mut opts) ? }
 			'make' { make(mut opts) ? }
@@ -186,6 +187,13 @@ fn do_append(mut opts hamnn.Options) ? {
 	}
 }
 
+// do_display displays information about the contents of a file
+// for classifiers, datasets, or results of operations
+fn do_display(opts hamnn.Options) ? {
+	// opts.show_flag = true
+	hamnn.display_file(opts.datafile_path, opts.DisplaySettings) ?
+}
+
 // query
 fn do_query(mut opts hamnn.Options) ? {
 	mut cl := hamnn.Classifier{}
@@ -269,11 +277,6 @@ fn make(mut opts hamnn.Options) ? {
 		println(cl)
 	}
 }
-
-// display outputs to the console or graphs a previously saved result
-// fn display(opts Options) {
-// 	display.display(opts)
-// }
 
 // parse_range takes a string like '3,6,8' and returns [3, 6, 8]
 fn parse_range(arg string) []int {

@@ -21,6 +21,10 @@ const (
                console;
     append:    takes a classifier and extends it by adding labeled instances;
     cross:     performs a cross-validation on a dataset;
+    display:   loads a previously saved result and displays it on the console.
+               Applies to commands `analyze, append, explore, make, rank,
+               validate, and verify` when those commands are run with
+               -o --output and the path to a file.
     examples:  runs a file that displays brief information and a usage example 
                for running each command, prompts the user to continue, and then
                executes the example, displaying results on the console;
@@ -72,6 +76,21 @@ const (
                      attributes;
         
   "
+
+  display_help = '
+"display" regenerates the console display produced by other commands, from 
+the file saved by those commands when run with the -o or --output flag followed
+by the path to a file. It can also generate the plots produced by certain 
+commands (rank, explore).
+
+Usage: first save a results file, eg 
+v run . rank -o ~/rank_result.txt datasets/anneal.tab
+Then: v run . display ~/rank_result.txt
+
+Options:
+-e --expanded: show expanded results on the console 
+-g --graph:    show plots on the default web browser
+'
 
 	examples_help = '
 "examples" displays information about running the various commands, shows
@@ -327,8 +346,4 @@ Options:
   -x --exclude, exclude missing values from rank value calculations;
 '
 
-	display_help = '
-  "display" takes a previously saved results file, and outputs to the console
-  and/or generates a plot.
-  '
 )
