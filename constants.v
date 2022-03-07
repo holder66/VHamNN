@@ -77,7 +77,7 @@ const (
         
   "
 
-  display_help = '
+	display_help = '
 "display" regenerates the console display produced by other commands, from 
 the file saved by those commands when run with the -o or --output flag followed
 by the path to a file. It can also generate the plots produced by certain 
@@ -345,5 +345,4 @@ Options:
       class prevalences;
   -x --exclude, exclude missing values from rank value calculations;
 '
-
 )

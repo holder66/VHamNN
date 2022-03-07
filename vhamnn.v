@@ -13,7 +13,7 @@ import math
 // `v run vhamnn.v --help`
 // ```sh
 // Usage: v run vhamnn [command] [flags] datafile
-// Commands: analyze | append | cross | display | examples | explore 
+// Commands: analyze | append | cross | display | examples | explore
 // | make | orange |
 //           query | rank | validate | verify
 // Flags and options:

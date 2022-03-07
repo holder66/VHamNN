@@ -86,6 +86,15 @@ fn test_rank_attributes() {
 	println(os.execute_or_panic('v run . rank -x -g datasets/anneal.tab'))
 }
 
+// test_display 
+fn test_display() {
+	println(os.execute_or_panic('v run . cross -c -b 2,4 -a 4 -o tempfolder/cross_result.txt datasets/developer.tab'))
+	println(os.execute_or_panic('v run . display -e tempfolder/cross_result.txt'))
+	println(os.execute_or_panic('v run . rank -o tempfolder/rank_result.txt datasets/UCI/segment.arff'))
+	println(os.execute_or_panic('v run . display -g tempfolder/rank_result.txt'))
+	
+}
+
 // test_flag
 fn test_flag() {
 	mut args := ['rank', '-h']
