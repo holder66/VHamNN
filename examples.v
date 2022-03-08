@@ -3,11 +3,12 @@ module main
 
 import os
 import readline { read_line }
+import etienne_napoleone.chalk
 
 // run_example
 fn run_example(before string, after string, cmd string) ? {
 	println(before)
-	println('eg, ~/vlang/vhamnn$ ' + cmd)
+	println('eg, ~$ ' + chalk.fg(chalk.style(cmd,'reverse'), 'cyan'))
 	s := read_line('Press "return" to execute ("s" to skip)...') ?
 	if s != 's' {
 		println(os.execute_or_panic(cmd).output)
