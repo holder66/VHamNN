@@ -8,3 +8,4 @@ vhamnn
 *.dll
 vls.log
 temp_test.v
+*.txt

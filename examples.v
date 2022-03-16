@@ -8,7 +8,7 @@ import etienne_napoleone.chalk
 // run_example
 fn run_example(before string, after string, cmd string) ? {
 	println(before)
-	println('eg, ~$ ' + chalk.fg(chalk.style(cmd,'reverse'), 'cyan'))
+	println('eg, ~$ ' + chalk.fg(chalk.style(cmd, 'reverse'), 'cyan'))
 	s := read_line('Press "return" to execute ("s" to skip)...') ?
 	if s != 's' {
 		println(os.execute_or_panic(cmd).output)
