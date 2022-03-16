@@ -1,14 +1,21 @@
 name: CI
 
+
 on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+  schedule:
+    - cron: "31 1,12 * * *"
+
   push:
-    branches: [master]
+
 
 jobs:
   build:
     strategy:
       matrix:
-        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        os: ["ubuntu-latest"]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -24,13 +31,19 @@ jobs:
         run: |
           v fmt -diff .
           v fmt -verify .
+
       - name: Install dependencies
         run: |
           v install vsl
           v install etienne_napoleone.chalk
           v install holder66.hamnn
+
+      - name: Install garbage collection library
+        run: |
+          sudo apt-get install --quiet -y --no-install-recommends libgc-dev
+
       - name: Build ${{ github.event.repository.name }}
         run: v .
 
       - name: Run Tests
-        run: v test .
+        run: v -gc boehm test .
