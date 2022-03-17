@@ -159,7 +159,9 @@ fn option(args []string, what []string) string {
 // flag returns true if a specific flag is found, false otherwise
 fn flag(args []string, what []string) bool {
 	for arg in args {
-		if arg in what {return true}
+		if arg in what {
+			return true
+		}
 	}
 	return false
 }
@@ -275,7 +277,9 @@ fn make(mut opts hamnn.Options) ? {
 
 // parse_range takes a string like '3,6,8' and returns [3, 6, 8]
 fn parse_range(arg string) []int {
-	if arg == '' {return [0]}
+	if arg == '' {
+		return [0]
+	}
 	return arg.split(',').map(it.int())
 }
 
