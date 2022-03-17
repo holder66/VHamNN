@@ -38,12 +38,8 @@ jobs:
           v install etienne_napoleone.chalk
           v install holder66.hamnn
 
-      - name: Install garbage collection library
-        run: |
-          sudo apt-get install --quiet -y --no-install-recommends libgc-dev
-
       - name: Build ${{ github.event.repository.name }}
         run: v .
 
       - name: Run Tests
-        run: v -gc boehm test .
+        run: v vhamnn_functions_test.v

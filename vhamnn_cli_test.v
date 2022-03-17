@@ -102,10 +102,6 @@ fn test_flag() {
 
 // test_option
 fn test_option() {
-	println('option returned: ${option(['2,6', '-x', 'true', 'datasets/iris.tab'], [
-		'-x',
-		'--exclude',
-	])}')
 	assert option(['--bins', '2,6', '-x', 'true', 'datasets/iris.tab'], ['-x', '--exclude']) == 'true'
 	assert option(['--bins', '2,6', '--exclude', 'false', 'datasets/iris.tab'], ['-x', '--exclude']) == 'false'
 	assert option(['-b', '2,6', '-x', 'true', 'datasets/iris.tab'], ['-b', '--bins']) == '2,6'

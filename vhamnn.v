@@ -158,14 +158,10 @@ fn option(args []string, what []string) string {
 
 // flag returns true if a specific flag is found, false otherwise
 fn flag(args []string, what []string) bool {
-	mut result := false
 	for arg in args {
-		if arg in what {
-			result = true
-			break
-		}
+		if arg in what {return true}
 	}
-	return result
+	return false
 }
 
 // analyze prints out to the console
@@ -279,15 +275,8 @@ fn make(mut opts hamnn.Options) ? {
 
 // parse_range takes a string like '3,6,8' and returns [3, 6, 8]
 fn parse_range(arg string) []int {
-	mut str := arg
-	mut res := [arg.int()]
-	for _ in 0 .. (arg.len - 1) {
-		str = str[1..]
-		if str[0] == 44 {
-			res << str[1..].int()
-		}
-	}
-	return res
+	if arg == '' {return [0]}
+	return arg.split(',').map(it.int())
 }
 
 // last returns the last element of a string array
