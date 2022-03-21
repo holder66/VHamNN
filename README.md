@@ -7,6 +7,8 @@ You can use `VHamNN` with your own datasets, or with a selection of publicly ava
 What, another AI package? [Is that necessary?](https://github.com/holder66/vhamnn/blob/master/AI_for_rest_of_us.md)
 And have a look here for a more complete [description and potential use cases](https://github.com/holder66/vhamnn/blob/master/description.md). 
 
+[Glossary of terms](https://github.com/holder66/vhamnn/blob/master/glossary.md)
+
 ## Installation:
 First, install V, if not already installed. On MacOS, Linux etc. you need `git` and a C compiler (For windows or android environments, see the [v lang documentation](https://github.com/vlang/v/blob/master/doc/docs.md#windows)) In a terminal:
 ```sh
@@ -51,9 +53,12 @@ v .         # recompile
 ## Getting help:
 The V lang community meets on [Discord](https://discord.gg/vlang)
 
-For issues with VHamNN or HamNN, please raise an issue on github:
-[vhamnn](https://github.com/holder66/vhamnn)
-[hamnn](https://github.com/holder66/hamnn)
+For bug reports, feature requests, etc., please raise an issue on github:
+
+[for VHamNN](https://github.com/holder66/vhamnn)
+
+[for HamNN](https://github.com/holder66/hamnn)
+
 
 ## Memory leak problem:
 
