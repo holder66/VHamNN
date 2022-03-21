@@ -4,46 +4,7 @@ A Command Line Interface (CLI) app, for classification using a nearest neighbor 
 
 You can use `vhamnn` with your own datasets, or with a selection of publicly available datasets that are widely used for demonstrating and testing ML classifiers, in the `datasets` directory. These files are either in [ARFF (Attribute-Relation File Format)](https://waikato.github.io/weka-wiki/formats_and_processing/arff_stable/) or in [Orange file format](https://orange3.readthedocs.io/projects/orange-data-mining-library/en/latest/reference/data.io.html).
 
-## Description
-
-### What it is
-- technology for pattern classification - making sense of what our senses tell us
-- based on the physiology (mimics the functioning) of the central nervous system
-
-### What it can do
-- classify static patterns (eg images, microarray data, medical symptoms and test results, demographic data, survey results, etc.)
-- classify serial (time-based) patterns (eg speech, movies, real-time sensor data, radar information, etc.) (under development)
-- works with multiple classes
-- handles missing data gracefully
-- easily and accurately deals with situations where classes are not [linearly separable](https://en.wikipedia.org/wiki/Linear_separability). This applies to 
-many cases in physiology, biology,  and medicine (see [hormesis.](https://en.wikipedia.org/wiki/Hormesis))
-
-### What makes it special
-- one-trial learning - learns in a single pass
-- robust - accommodates missing information, damage, or noise gracefully
-- easy to convert into hardware - in silicon, possibly optical, molecular, or quantum computing
-- lends itself to parallel computing
-- has an exceptionally tiny footprint in terms of memory and computing resources needed
-
-### What problems can it solve
-#### data reduction
-identifies and uses only those variables which are most likely to contribute to classification accuracy
-#### image preprocessing
-eliminates the need to correct for variations in size, skew, or rotation (under development)
-#### noisy data
-quickly identifies and removes from consideration variables which add noise
-
-### Where it can be applied - potential use cases
-- speech recognition
-- emotion recognition (from facial expression, body language, speech prosody)
-- prediction of weather, earthquakes, traffic patterns
-- aircraft collision avoidance
-- data mining (eg, for targeted advertising)
-- diagnostic aid (medical, equipment maintenance, etc.)
-- risk identification and management (loans, risk calculators for heart disease, etc.)
-- real-time problem detection (bridges, computer networks, automobiles, railroads, aircraft, etc.)
-- robotics
-- neural prosthetic devices, to enhance our senses, processing capacity and speed, memory
+What, another AI package? [Is that necessary?](https://github.com/holder66/vhamnn/blob/master/AI_for_rest_of_us.md) 
 
 ## Installation:
 First, install V, if not already installed. On MacOS, Linux etc. you need `git` and a C compiler (For windows or android environments, see the [v lang documentation](https://github.com/vlang/v/blob/master/doc/docs.md#windows)) In a terminal:
@@ -99,6 +60,13 @@ At the present time, if your code using the hamnn library (especially memory-int
  ```
 You may need to install the libgc or libgc-dev library, using "brew" or "apt".
 
+## Speed things up:
+
+Make sure you use the -c (--concurrent) flag to make use of available CPU cores.
+Another huge speedup happens if you compile using the -prod (for production) option. The compilation itself takes longer, but the resulting code is highly optimized.
+`v -prod .` or `v -gc boehm -prod .`
+And then run it, eg `./vhamnn explore -s -c datasets/iris.tab`
+
 ## Examples showing use of the Command Line Interface
 Please see [examples_of_command_line_usage.md](https://github.com/holder66/vhamnn/blob/master/examples_of_command_line_usage.md)
 
@@ -113,35 +81,6 @@ Please see [clinical_calculator_example.md](https://github.com/holder66/vhamnn/b
 Please see a worked example here: [noisy_data.md](https://github.com/holder66/vhamnn/blob/master/noisy_data.md)
 
 
-## Glossary of terms
-**instances:** synonyms: cases; records; examples
-- instances can be grouped into sets, eg training set, test set, validation set
-- corresponds to a table row in a tabular data base
-
-**dataset:** consists of a number of instances (cases, or examples)
-
-**attributes:** synonyms: variables; fields; features
-- corresponds to a column in a tabular data base. The attribute name is the column header
-- one of the attribute will be the class attribute or class variable (also called the target variable, or class feature)
-- attributes can be combined in various ways, to create new attributes
-
-**attribute ranking:** the process of finding those attributes which provide the best classification performance
-
-**classes:** the set of values that the class attribute can take
-
-**parameters:** eg, the k in k-nearest-neighbors
-- often, the work involved in applying machine learning to a problem is to find appropriate or optimal values for the parameters used by a given ML methodology
-
-**Hamming distance:** (may also be called "overlap metric") the Hamming distance between two strings of equal length is the number of positions at which the corresponding symbols are different. In other words, it measures the minimum number of substitutions required to change one string into the other, or the minimum number of errors that could have transformed one string into the other. For binary strings a and b the Hamming distance is equal to the number of ones (population count) in a XOR b.
-
-**bins:** the number of bins or slices to be applied for a given continuous attribute
-
-**binning:** the process of converting a continuous attribute into a discrete attribute
-
-**discrete:** (as applied to a attribute or variable): nominal or ordinal data
-
-**continuous:** (as applied to a attribute or variable): real-valued
-- ordinal data with a range greater than a certain parameter may also be treated as continous data
 
 
 ## Previous versions
