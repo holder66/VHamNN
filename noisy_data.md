@@ -1,5 +1,5 @@
 ## Finding useful data in the noise
-Much real-world data consists of mostly noise, and only a small amount of information. The hammnn algorithm can be helpful in extracting the useful information.
+Much real-world data consists of mostly noise, and only a small amount of information. The HamNN algorithm can be helpful in extracting the useful information.
 
 An example is genomics data. The prostata dataset consists of genomic
 microarray data from 102 subjects. Fifty of the 102 subjects were normal,
@@ -9,22 +9,24 @@ mass of data be used to predict whether a person has a tumor or is normal?
 
 To try the example on your own installation, start by compiling an optimized version, `v -prod -gc boehm .`
 
+Note: processing times are on a 2019 Macbook Pro.
 
 ```sh
 ./vhamnn rank -w -s datasets/prostata.tab 
 ```   
 ```sh
-Attributes Sorted by Rank Value, including missing values
-For datafile: datasets/prostata.tab, binning range [2, 16]
+
+Attributes Sorted by Rank Value, for "datasets/prostata.tab"
+Missing values: included
+Bin range for continuous attributes: from 2 to 16 with interval 1
  Index  Name                         Type   Rank Value   Bins
- _____  ___________________________  ____   __________   ____
  10426  NELL2                        C           80.15      9
   6117  HPN                          C           78.15      7
   9104  PTGDS                        C           74.62      6
   6394  RBP1                         C           74.23     13
  10070  CALM1_4                      C           72.85     13
   8897  HSPD1                        C           72.77     13
-  4297  TRGC2                        C           70.85     11 
+  4297  TRGC2                        C           70.85     11
 	...
 	...
 	...
@@ -34,6 +36,8 @@ For datafile: datasets/prostata.tab, binning range [2, 16]
   4163  PIP                          C            2.00      2
   4852  SEMG2                        C            2.00      2
   7529  SEMG1                        C            2.00      2
+processing time: 0 hrs 0 min  1.358 sec
+
 ```
 
 Accumulated experience with the algorithm suggests that using a fixed number
@@ -42,28 +46,24 @@ of bins often gives good results.
 ./vhamnn rank -w -s -b 6 datasets/prostata.tab
 ```
 ```sh
-Attributes Sorted by Rank Value, including missing values
-For datafile: datasets/prostata.tab, binning range [6]
+
+Attributes Sorted by Rank Value, for "datasets/prostata.tab"
+Missing values: included
+Bin range for continuous attributes: from 2 to 6 with interval 1
  Index  Name                         Type   Rank Value   Bins
- _____  ___________________________  ____   __________   ____
   9104  PTGDS                        C           74.62      6
-  6117  HPN                          C           74.31      6
-  8897  HSPD1                        C           71.08      6
- 10426  NELL2                        C           66.15      6
-  4297  TRGC2                        C           65.23      6
-  8966  LMO3                         C           64.54      6
- 12085  GSTM1_2                      C           64.08      6
-  6394  RBP1                         C           62.08      6
-  5498  HSD11B1                      C           61.08      6
-   137  ANXA2                        C           60.85      6
+  6117  HPN                          C           74.54      5
+  8897  HSPD1                        C           71.08      2
+  8782  PDLIM5_4                     C           69.15      4
+  7489  CRYAB_2                      C           68.85      5
    ...
    ...
    ...
-  9490  PDCD4                        C            2.00      6
-  2495  CPN1                         C            2.00      6
-   579  PMCH                         C            2.00      6
-  5692  SEDLP                        C            2.00      6
-  5580  PRR4                         C            1.92      6
+  7529  SEMG1                        C            2.00      2
+  8486  AKR1B1                       C            2.00      2
+ 12313  325_s_at                     C            2.00      2
+   410  PIN1L                        C            2.00      3
+processing time: 0 hrs 0 min  0.649 sec
 ```
 
 We can verify this by comparing cross-validation results over a range of 

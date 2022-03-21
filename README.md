@@ -1,10 +1,11 @@
 [![CI](https://github.com/holder66/vhamnn/actions/workflows/ci.yml/badge.svg)](https://github.com/holder66/vhamnn/actions/workflows/ci.yml)
-# vhamnn
-A Command Line Interface (CLI) app, for classification using a nearest neighbor algorithm based on Hamming distances. Vhamnn makes use of the [holder66.hamnn ML library](https://github.com/holder66/hamnn).
+# VHamNN
+A Command Line Interface (CLI) app, for classification using a nearest neighbor algorithm based on Hamming distances. VHamNN makes use of the [holder66.hamnn ML library](https://github.com/holder66/hamnn).
 
-You can use `vhamnn` with your own datasets, or with a selection of publicly available datasets that are widely used for demonstrating and testing ML classifiers, in the `datasets` directory. These files are either in [ARFF (Attribute-Relation File Format)](https://waikato.github.io/weka-wiki/formats_and_processing/arff_stable/) or in [Orange file format](https://orange3.readthedocs.io/projects/orange-data-mining-library/en/latest/reference/data.io.html).
+You can use `VHamNN` with your own datasets, or with a selection of publicly available datasets that are widely used for demonstrating and testing ML classifiers, in the `datasets` directory. These files are either in [ARFF (Attribute-Relation File Format)](https://waikato.github.io/weka-wiki/formats_and_processing/arff_stable/) or in [Orange file format](https://orange3.readthedocs.io/projects/orange-data-mining-library/en/latest/reference/data.io.html).
 
-What, another AI package? [Is that necessary?](https://github.com/holder66/vhamnn/blob/master/AI_for_rest_of_us.md) 
+What, another AI package? [Is that necessary?](https://github.com/holder66/vhamnn/blob/master/AI_for_rest_of_us.md)
+And have a look here for a more complete [description and potential use cases](https://github.com/holder66/vhamnn/blob/master/description.md). 
 
 ## Installation:
 First, install V, if not already installed. On MacOS, Linux etc. you need `git` and a C compiler (For windows or android environments, see the [v lang documentation](https://github.com/vlang/v/blob/master/doc/docs.md#windows)) In a terminal:
@@ -28,8 +29,10 @@ Install the `holder66.hamnn` library:
 `v install holder66.hamnn`
 
 And a couple of other libraries:
-`v install vsl`
-`v install etienne_napoleone.chalk`
+```sh
+v install vsl
+v install etienne_napoleone.chalk
+````
 
 That's it!
 
@@ -48,13 +51,13 @@ v .         # recompile
 ## Getting help:
 The V lang community meets on [Discord](https://discord.gg/vlang)
 
-For issues with vhamnn or hamnn, please raise an issue on github:
+For issues with VHamNN or HamNN, please raise an issue on github:
 [vhamnn](https://github.com/holder66/vhamnn)
 [hamnn](https://github.com/holder66/hamnn)
 
 ## Memory leak problem:
 
-At the present time, if your code using the hamnn library (especially memory-intensive operations such as cross-validate or explore) dies without going to completion, it may be due to memory leaks caused by the V lang compiler. The best way to prevent these memory leaks is to compile with the gc flag, eg:
+At the present time, if your code using the HamNN library (especially memory-intensive operations such as cross-validate or explore) dies without going to completion, it may be due to memory leaks caused by the V lang compiler. The best way to prevent these memory leaks is to compile with the gc flag, eg:
  ```sh
  v -gc boehm .
  ```
@@ -64,8 +67,13 @@ You may need to install the libgc or libgc-dev library, using "brew" or "apt".
 
 Make sure you use the -c (--concurrent) flag to make use of available CPU cores.
 Another huge speedup happens if you compile using the -prod (for production) option. The compilation itself takes longer, but the resulting code is highly optimized.
-`v -prod .` or `v -gc boehm -prod .`
-And then run it, eg `./vhamnn explore -s -c datasets/iris.tab`
+`v -prod .` or
+
+`v -gc boehm -prod .`
+
+And then run it, eg 
+
+`./vhamnn explore -s -c datasets/iris.tab`
 
 ## Examples showing use of the Command Line Interface
 Please see [examples_of_command_line_usage.md](https://github.com/holder66/vhamnn/blob/master/examples_of_command_line_usage.md)
