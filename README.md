@@ -1,4 +1,4 @@
-[![CI](https://github.com/holder66/vhamnn/actions/workflows/ci.yml/badge.svg)](https://github.com/holder66/vhamnn/actions/workflows/ci.yml)
+[![VHamNN Continuous Integration](https://github.com/holder66/VHamNN/actions/workflows/VHamNN%20Continuous%20Integration.yml/badge.svg)](https://github.com/holder66/VHamNN/actions/workflows/VHamNN%20Continuous%20Integration.yml)
 # VHamNN
 A Command Line Interface (CLI) app, for classification using a nearest neighbor algorithm based on Hamming distances. VHamNN makes use of the [holder66.hamnn ML library](https://github.com/holder66/hamnn).
 
