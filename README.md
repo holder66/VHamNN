@@ -20,24 +20,16 @@ sudo ./v symlink	# add v to your PATH
 ```
 Clone this github repository:
 ```sh
+cd ~               # go back to your home directory
 git clone https://github.com/holder66/vhamnn
+v install holder66.hamnn   # install the HamNN library
 cd vhamnn
-v .                # compiles all the files in the folder
+v .                # compiles all the files in the folder; v will install two
+                    # two other libraries which are dependencies of HamNN
 ./vhamnn --help    # displays help information about the various commands
 # and options available. More specific help information
 # is available for each command.
 ```
-Install the `holder66.hamnn` library:
-```sh
-cd ~       # go back to your home directory
-v install holder66.hamnn
-````
-And a couple of other libraries:
-```sh
-v install vsl
-v install etienne_napoleone.chalk
-````
-
 That's it!
 
 ## Tutorial:

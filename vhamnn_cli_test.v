@@ -94,16 +94,3 @@ fn test_display() {
 	println(os.execute_or_panic('v run . display -g tempfolder/rank_result.txt'))
 }
 
-// test_flag
-fn test_flag() {
-	mut args := ['rank', '-h']
-	assert flag(args, ['-h', '--help', 'help']) == true
-}
-
-// test_option
-fn test_option() {
-	assert option(['--bins', '2,6', '-x', 'true', 'datasets/iris.tab'], ['-x', '--exclude']) == 'true'
-	assert option(['--bins', '2,6', '--exclude', 'false', 'datasets/iris.tab'], ['-x', '--exclude']) == 'false'
-	assert option(['-b', '2,6', '-x', 'true', 'datasets/iris.tab'], ['-b', '--bins']) == '2,6'
-	assert option(['--bins', '2,6', '-x', 'true', 'datasets/iris.tab'], ['-b', '--bins']) == '2,6'
-}
