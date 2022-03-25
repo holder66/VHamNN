@@ -93,4 +93,3 @@ fn test_display() {
 	println(os.execute_or_panic('v run . rank -o tempfolder/rank_result.txt datasets/UCI/segment.arff'))
 	println(os.execute_or_panic('v run . display -g tempfolder/rank_result.txt'))
 }
-
