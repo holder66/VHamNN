@@ -38,7 +38,7 @@ Fourth, the algorithm will give you more useful responses if you feed it all the
 
 Fifth, issues with possible linear nonseparability (for example with physiologic data where hormesis may play a role) are moot. For example, training the algorithm to perform with 100% accuracy on the XOR (Exclusive Or) function requires only 4 training cases;
 
-Finally, no need to learn to use a whole variety of different pieces of software (or  to assemble a team with all the expertise; for example, a [recent article](https://www.sciencedirect.com/science/article/pii/S193131282200049X?via%3Dihub) cited 26 different items of software and algorithms). The HamNN library contains all the functions you are likely to need, and the VhamNN command line application lets you use those functions without needing to code or learn complicated platforms like MatLab, R, or SciKitLearn.
+Finally, no need to learn to use a whole variety of different pieces of software (or to assemble a team with all the expertise; for example, a [recent article](https://www.sciencedirect.com/science/article/pii/S193131282200049X?via%3Dihub) cited 26 different items of software and algorithms). The HamNN library contains all the functions you are likely to need, and the VhamNN command line application lets you use those functions without needing to code or learn complicated platforms like MatLab, R, or SciKitLearn.
 
 But if you do have the urge to “roll your own” and write code to use the HamNN library of functions, I think you’ll find [V a most congenial programming language](https://vlang.io): simple, fast, safe, easy to learn, and fun to use!
 _
