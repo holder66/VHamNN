@@ -33,7 +33,9 @@ v .                # compiles all the files in the folder; v will install two
 That's it!
 
 ## Tutorial:
-```v run . examples go```
+```
+v run . examples go
+```
 
 ## Updating:
 ```sh
@@ -66,17 +68,14 @@ You may need to install the libgc or libgc-dev library, using "brew" or "apt".
 
 Make sure you use the -c (--concurrent) flag to make use of available CPU cores.
 Another huge speedup happens if you compile using the -prod (for production) option. The compilation itself takes longer, but the resulting code is highly optimized.
-
 ```
 v -prod .
-``` or
-
+```
+or
 ```
 v -gc boehm -prod .
 ```
-
 And then run it, eg 
-
 ```
 ./vhamnn explore -s -c datasets/iris.tab
 ```
@@ -97,7 +96,6 @@ Please see a worked example here: [noisy_data.md](https://github.com/holder66/vh
 
 ## MNIST dataset
 The mnist_train.tab file is too large to keep in the repository. If you wish to experiment with it, it can be downloaded by right-clicking on [this link](http://henry.olders.ca/datasets/mnist_train.tab) in a web browser, or downloaded via the command line:
-
 ```
 wget http://henry.olders.ca/datasets/mnist_train.tab
 ```
