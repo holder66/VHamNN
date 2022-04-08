@@ -67,13 +67,19 @@ You may need to install the libgc or libgc-dev library, using "brew" or "apt".
 Make sure you use the -c (--concurrent) flag to make use of available CPU cores.
 Another huge speedup happens if you compile using the -prod (for production) option. The compilation itself takes longer, but the resulting code is highly optimized.
 
-```v -prod .``` or
+```
+v -prod .
+``` or
 
-```v -gc boehm -prod .```
+```
+v -gc boehm -prod .
+```
 
 And then run it, eg 
 
-```./vhamnn explore -s -c datasets/iris.tab```
+```
+./vhamnn explore -s -c datasets/iris.tab
+```
 
 ## Examples showing use of the Command Line Interface
 Please see [examples_of_command_line_usage.md](https://github.com/holder66/vhamnn/blob/master/examples_of_command_line_usage.md)
@@ -92,7 +98,9 @@ Please see a worked example here: [noisy_data.md](https://github.com/holder66/vh
 ## MNIST dataset
 The mnist_train.tab file is too large to keep in the repository. If you wish to experiment with it, it can be downloaded by right-clicking on [this link](http://henry.olders.ca/datasets/mnist_train.tab) in a web browser, or downloaded via the command line:
 
-```wget http://henry.olders.ca/datasets/mnist_train.tab```
+```
+wget http://henry.olders.ca/datasets/mnist_train.tab
+```
 
 ## Previous versions
 The most recent version (2012) was written in python; one can experiment with it via a [web-based interface](http://hammingnn.olders.ca). I’ve [posted test results](https://henry.olders.ca/wordpress/?p=613) using this classifier with a number of publicly accessible datasets. Here are some [additional test results](https://henry.olders.ca/wordpress/?p=381) with genomics datasets.
