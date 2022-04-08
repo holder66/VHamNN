@@ -88,7 +88,9 @@ Please see [clinical_calculator_example.md](https://github.com/holder66/vhamnn/b
 Please see a worked example here: [noisy_data.md](https://github.com/holder66/vhamnn/blob/master/noisy_data.md)
 
 
-
+## MNIST dataset
+The mnist_train.tab file is too large to keep in the repository. If you wish to experiment with it, it can be downloaded by right-clicking on [this link](http://henry.olders.ca/datasets/mnist_train.tab) in a web browser, or downloaded via the command line:
+`wget http://henry.olders.ca/datasets/mnist_train.tab`
 
 ## Previous versions
 The most recent version (2012) was written in python; one can experiment with it via a [web-based interface](http://hammingnn.olders.ca). I’ve [posted test results](https://henry.olders.ca/wordpress/?p=613) using this classifier with a number of publicly accessible datasets. Here are some [additional test results](https://henry.olders.ca/wordpress/?p=381) with genomics datasets.
