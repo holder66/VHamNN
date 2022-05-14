@@ -63,17 +63,17 @@ fn main() {
 		command := opts.command
 		match command {
 			'analyze' { analyze(mut opts) }
-			'append' { do_append(mut opts) ? }
-			'cross' { cross(mut opts) ? }
-			'display' { do_display(opts) ? }
-			'examples' { examples() ? }
-			'explore' { do_explore(mut opts) ? }
-			'make' { make(mut opts) ? }
+			'append' { do_append(mut opts)? }
+			'cross' { cross(mut opts)? }
+			'display' { do_display(opts)? }
+			'examples' { examples()? }
+			'explore' { do_explore(mut opts)? }
+			'make' { make(mut opts)? }
 			'orange' { orange() }
-			'query' { do_query(mut opts) ? }
+			'query' { do_query(mut opts)? }
 			'rank' { rank(mut opts) }
-			'validate' { do_validate(mut opts) ? }
-			'verify' { do_verify(mut opts) ? }
+			'validate' { do_validate(mut opts)? }
+			'verify' { do_verify(mut opts)? }
 			else { println('unrecognized command') }
 		}
 	}
@@ -177,8 +177,8 @@ fn analyze(mut opts hamnn.Options) {
 // specified by -o. It displays the extended classifier on the console.
 fn do_append(mut opts hamnn.Options) ? {
 	opts.show_flag = true
-	ext_cl := hamnn.append_instances(hamnn.load_classifier_file(opts.classifierfile_path) ?,
-		hamnn.load_instances_file(opts.datafile_path) ?, opts)
+	ext_cl := hamnn.append_instances(hamnn.load_classifier_file(opts.classifierfile_path)?,
+		hamnn.load_instances_file(opts.datafile_path)?, opts)
 	if opts.expanded_flag {
 		println(ext_cl)
 	}
@@ -188,7 +188,7 @@ fn do_append(mut opts hamnn.Options) ? {
 // for classifiers, datasets, or results of operations
 fn do_display(opts hamnn.Options) ? {
 	// opts.show_flag = true
-	hamnn.display_file(opts.datafile_path, opts.DisplaySettings) ?
+	hamnn.display_file(opts.datafile_path, opts.DisplaySettings)?
 }
 
 // query
@@ -197,7 +197,7 @@ fn do_query(mut opts hamnn.Options) ? {
 	if opts.classifierfile_path == '' {
 		cl = hamnn.make_classifier(hamnn.load_file(opts.datafile_path), opts)
 	} else {
-		cl = hamnn.load_classifier_file(opts.classifierfile_path) ?
+		cl = hamnn.load_classifier_file(opts.classifierfile_path)?
 	}
 	qr := hamnn.query(cl, opts)
 	if opts.expanded_flag {
@@ -211,10 +211,10 @@ fn do_verify(mut opts hamnn.Options) ? {
 	if opts.classifierfile_path == '' {
 		cl = hamnn.make_classifier(hamnn.load_file(opts.datafile_path), opts)
 	} else {
-		cl = hamnn.load_classifier_file(opts.classifierfile_path) ?
+		cl = hamnn.load_classifier_file(opts.classifierfile_path)?
 	}
 	opts.show_flag = true
-	vr := hamnn.verify(cl, opts) ?
+	vr := hamnn.verify(cl, opts)?
 	if opts.verbose_flag {
 		println(vr)
 	}
@@ -226,10 +226,10 @@ fn do_validate(mut opts hamnn.Options) ? {
 	if opts.classifierfile_path == '' {
 		cl = hamnn.make_classifier(hamnn.load_file(opts.datafile_path), opts)
 	} else {
-		cl = hamnn.load_classifier_file(opts.classifierfile_path) ?
+		cl = hamnn.load_classifier_file(opts.classifierfile_path)?
 	}
 	opts.show_flag = true
-	var := hamnn.validate(cl, opts) ?
+	var := hamnn.validate(cl, opts)?
 	if opts.expanded_flag {
 		println(var)
 	}
@@ -239,13 +239,13 @@ fn do_validate(mut opts hamnn.Options) ? {
 fn cross(mut opts hamnn.Options) ? {
 	opts.show_flag = true
 	opts.random_pick = if opts.repetitions > 1 { true } else { false }
-	hamnn.cross_validate(hamnn.load_file(opts.datafile_path), opts) ?
+	hamnn.cross_validate(hamnn.load_file(opts.datafile_path), opts)?
 }
 
 // do_explore
 fn do_explore(mut opts hamnn.Options) ? {
 	opts.show_flag = true
-	hamnn.explore(hamnn.load_file(opts.datafile_path), opts) ?
+	hamnn.explore(hamnn.load_file(opts.datafile_path), opts)?
 }
 
 // orange

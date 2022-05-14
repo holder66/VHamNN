@@ -8,20 +8,20 @@ import os
 fn testsuite_begin() ? {
 	// println(os.execute_or_panic('v up\nv update holder66.hamnn'))
 	if os.is_file('vhamnn') {
-		os.rm('vhamnn') ?
+		os.rm('vhamnn')?
 	}
 	os.execute_or_panic('v -gc boehm .')
 	if os.is_dir('tempfolder') {
-		os.rmdir_all('tempfolder') ?
+		os.rmdir_all('tempfolder')?
 	}
-	os.mkdir_all('tempfolder') ?
+	os.mkdir_all('tempfolder')?
 }
 
 fn testsuite_end() ? {
 	if os.is_file('vhamnn') {
-		os.rm('vhamnn') ?
+		os.rm('vhamnn')?
 	}
-	os.rmdir_all('tempfolder') ?
+	os.rmdir_all('tempfolder')?
 }
 
 // test_verify

@@ -34,7 +34,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          v install etienne_napoleone.chalk
           v install holder66.hamnn
 
       - name: Build ${{ github.event.repository.name }}
