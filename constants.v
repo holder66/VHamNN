@@ -324,7 +324,7 @@ the interval. For example, --bins 2,12,3 would indicate to do
 cross-validations for bins settings of 2, 5, 8, and 11. Note that a 
 single integer specifies the upper end of a range starting at 1.
 
-Usage: v -gc boehm run . explore -g -f 0 -c -a 3,4 -b 3,10  datasets/prostata.tab 
+Usage: v run . explore -g -f 0 -c -a 3,4 -b 3,10  datasets/prostata.tab 
 
 Options:
   -a --attributes, a range for the number of attributes (picked from the list

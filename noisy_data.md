@@ -7,7 +7,7 @@ while the other 52 had a prostate tumor. For each case, there
 are 12534 data points, of which one is the class attribute. Can this
 mass of data be used to predict whether a person has a tumor or is normal?
 
-To try the example on your own installation, start by compiling an optimized version, `v -prod -gc boehm .`
+To try the example on your own installation, start by compiling an optimized version, `v -prod .`
 
 Note: processing times are on a 2019 Macbook Pro.
 

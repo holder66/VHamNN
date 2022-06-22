@@ -10,7 +10,7 @@ fn testsuite_begin() ? {
 	if os.is_file('vhamnn') {
 		os.rm('vhamnn')?
 	}
-	os.execute_or_panic('v -gc boehm .')
+	os.execute_or_panic('v .')
 	if os.is_dir('tempfolder') {
 		os.rmdir_all('tempfolder')?
 	}

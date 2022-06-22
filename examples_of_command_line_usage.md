@@ -3,7 +3,7 @@
 ## Compile the app
 ```sh
 cd hamnn
-v -gc boehm -prod .
+v -prod .
 ````
 
 Now you can run the app with command line entries starting with `./vhamnn`, 
