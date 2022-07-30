@@ -28,13 +28,15 @@ While this may sound artificial, it is actually how things work in real life. In
 
 Besides making computation simpler, the process of binning itself can improve accuracy by enhancing contrast. But, more importantly, by treating all attributes as categorical (“discrete”), it becomes possible to rank-order them in their ability to distinguish between classes. This is essential in some domains (for example, micro-array genetic data) where most of the attributes represent just “noise” and degrade classification accuracy. 
 
-So how is all this going to benefit you, a potential AI user? First, ease of use of the HamNN algorithm. There are really only three parameters that you can adjust: the number of attributes to use, the number of bins for number (“continous”) attributes to be sliced into, and whether or not prevalence weighting is to be applied when counting up nearest neighbors. And there is an “explore” tool to facilitate finding good values for those parameters;
+So how is all this going to benefit you, a potential AI user? First, ease of use of the HamNN algorithm. There are really only two parameters that you can adjust: the number of attributes to use, and the number of bins for number (“continous”) attributes to be sliced into. An “explore” tool makes it easy to find good values for those two parameters.
 
-Second, there is no need to preprocess data, to normalize values, or to account for missing data. Binning takes care of preprocessing and normalizing number values, while missing values are gracefully dealt with (and may even contribute to accuracy);
+Besides the two parameters, there are also a couple of "switches" that can be set on or off. One switch controls whether or not prevalence weighting is to be applied when counting up nearest neighbors. Another switch controls whether duplicate instances will be deleted or not when training a classifier. A third switch determines whether to take into account missing values when rank ordering attributes.
+
+Second, there is no need for you to preprocess data, to normalize values, or to account for missing data. Binning takes care of preprocessing and normalizing number values, while missing values are gracefully dealt with (and may even contribute to accuracy);
 
 Third, no need to choose different algorithms for binary class problems or multiclass situations, or for dealing with continuous or discrete attributes or any mix;
 
-Fourth, the algorithm will give you more useful responses if you feed it all the data. For example, questionnaires often have a single score result, but the single score may account quite imperfectly for the contribution of each individual question to that final score. The HamNN algorithm, if given the answers to the individual questions, will weight individual responses appropriately;
+Fourth, the algorithm will give you more useful responses if you feed it fine grained information. For example, questionnaires often have a single score result, but the single score may account quite imperfectly for the contribution of each individual question to that final score. The HamNN algorithm, if given the responses to the individual questions, will weight individual responses appropriately;
 
 Fifth, issues with possible linear nonseparability (for example with physiologic data where hormesis may play a role) are moot. For example, training the algorithm to perform with 100% accuracy on the XOR (Exclusive Or) function requires only 4 training cases;
 

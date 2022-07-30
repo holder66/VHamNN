@@ -41,6 +41,7 @@ import math
 // -k --classifier, followed by the path to a file for a saved Classifier
 // -o --output, followed by the path to a file in which a classifier, a
 //    result, instances used for validation, or a query instance will be stored;
+// -p --purge, removes instances which after binning are duplicates
 // -r --reps, number of repetitions; if > 1, a random selection of
 // 	instances to be included in each fold will be applied
 // -s --show, output results to the console;
@@ -107,6 +108,7 @@ fn get_options(args []string) hamnn.Options {
 	opts.uniform_bins = flag(args, ['-u', '--uniform'])
 	opts.show_flag = flag(args, ['-s', '--show'])
 	opts.expanded_flag = flag(args, ['-e', '--expanded'])
+	opts.purge_flag = flag(args, ['-p', '--purge'])
 	if option(args, ['-a', '--attributes']) != '' {
 		opts.number_of_attributes = parse_range(option(args, ['-a', '--attributes']))
 	}

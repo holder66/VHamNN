@@ -62,6 +62,7 @@ const (
     -o --output:     followed by the path to a file in which a classifier, a
                      result, instances used for validation, or a query instance 
                      is to be stored;
+    -p --purge:      remove instances which are duplicates after binning;
     -r --reps:       number of repetitions; if > 1, a random selection of
                      instances to be included in each fold will be applied;
     -s --show:       output results to the console;
@@ -164,7 +165,8 @@ Options:
       of slices or bins for continuous attributes;
   -e --expanded: display the classifier struct on the console.
   -o --output: followed by the path to a file in which the classifier will be stored;
-  -x --exclude, exclude missing values from rank value calculations;
+  -p --purge: remove instances which are duplicates after binning;
+  -x --exclude: exclude missing values from rank value calculations;
     '
 
 	query_help = '
@@ -305,7 +307,8 @@ Options:
       number of slices or bins for continuous attributes;
   -c --concurrent: permit parallel processing to use multiple cores;
   -e --expanded: expanded results on the console;
-  -f --folds: number of cross-validation folds (default is leave-one-out)
+  -f --folds: number of cross-validation folds (default is leave-one-out);
+  -p --purge: remove instances which are duplicates after binning;
   -r --reps: number of repetitions; if > 1, a random selection of 
       instances to be included in each fold will be applied (TODO);
   -w --weight: weight the number of nearest neighbor counts by 
@@ -336,6 +339,7 @@ Options:
       binary classifiers (ie only 2 classes) also generates AUC plots;
   -o --output, followed by the path to a file in which the ExploreResult
         struct will be saved;
+  -p --purge: remove instances which are duplicates after binning;
   -r --reps, number of repetitions; if > 1, a random selection of 
       instances to be included in each fold will be applied (TODO);
   -t --test, followed by the path to a second file, used for verifications;

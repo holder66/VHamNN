@@ -79,7 +79,7 @@ Let's look at cross-validation first:"
 	run_example(before, after, cmd)?
 
 	before = 'Most classifier algorithms do not handle missing values well. However, missing values often add useful information that can improve classification accuracy. Vhamnn by default includes missing values, but they can be excluded by using the -x or --exclude flag:'
-	cmd = 'v run . cross -c -e -w -a -x 2 datasets/developer.tab'
+	cmd = 'v run . cross -c -e -w -a 2 -x datasets/developer.tab'
 	run_example(before, after, cmd)?
 
 	before = 'Contrast with the accuracy when missing values are taken into account:'
@@ -87,7 +87,7 @@ Let's look at cross-validation first:"
 	run_example(before, after, cmd)?
 
 	before = 'When working with large datasets, doing a leave-one-out cross-validation can be time-consuming. For example, the mnist test dataset has 10,000 cases, so doing a leave-one-out cross-validation requires training 10,000 classifiers. Save time by doing fewer folds, eg 10-fold (-f 10). Repeat the exercise 5 times (-r 5); results are averaged over the 5 repetitions, since random selection of instances for folding means that results will be different for one repetition to another. (Warning: executing this command can take several minutes!'
-	cmd = 'v  run . cross -s -e -f 10 -r 5 -a 310 -b 2,2 -c datasets/mnist_test.tab'
+	cmd = 'v run . cross -s -e -f 10 -r 5 -a 310 -b 2,2 -c datasets/mnist_test.tab'
 	run_example(before, after, cmd)?
 
 	before = 'The explore command allows us to run a series of cross-validations or verifications on a dataset while varying the number of attributes and the number of bins used for continuous attributes. This allows us to find which parameter values give good classification accuracy for our use case. For datasets with continuous attributes, specify the binning range (eg, from 3 through 30 bins, stepping by 3):'
