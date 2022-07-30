@@ -14,7 +14,9 @@ And have a look here for a more complete [description and potential use cases](h
 [Glossary of terms](https://github.com/holder66/vhamnn/blob/master/glossary.md)
 
 ## Installation:
-First, install V, if not already installed. On MacOS, Linux etc. you need `git` and a C compiler (For windows or android environments, see the [v lang documentation](https://github.com/vlang/v/blob/master/doc/docs.md#windows)) In a terminal:
+First, install V, if not already installed. On MacOS, Linux etc. you need `git` and a C compiler (For windows or android environments, see the [v lang documentation](https://github.com/vlang/v/blob/master/doc/docs.md#windows)).
+
+In a terminal:
 ```sh
 git clone https://github.com/vlang/v
 cd v
